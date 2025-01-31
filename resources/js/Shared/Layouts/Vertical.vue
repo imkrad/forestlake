@@ -98,16 +98,16 @@ export default {
           <!-- Dark Logo-->
           <Link href="/" class="logo logo-dark">
             <span class="logo-sm">
-              <img src="@assets/images/adzu.png" alt="" height="28" />
+              <img src="@assets/images/logo.png" alt="" height="28" />
             </span>
             <span class="logo-lg">
-              <img src="@assets/images/adzu.png" alt="" height="30" />
+              <img src="@assets/images/logo.png" alt="" height="30" />
             </span>
           </Link>
           <!-- Light Logo-->
           <Link href="/" class="logo logo-light">
             <span class="logo-sm">
-              <img src="@assets/images/adzu.png" alt="" height="30" />
+              <img src="@assets/images/logo.png" alt="" height="30" />
             </span>
             <span class="logo-lg">
               <img src="@assets/images/logo-light.png" alt="" height="35" />

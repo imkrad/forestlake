@@ -1,8 +1,8 @@
 const state = {
-  layoutType: 'vertical',
+  layoutType: 'horizontal',
   layoutWidth: 'fluid',
   sidebarSize: 'sm',
-  topbar: 'light',
+  topbar: 'dark',
   mode: 'light',
   position: 'fixed',
   sidebarView: 'default',

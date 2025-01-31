@@ -12,7 +12,8 @@
         <meta property="og:image" content="URL to the template's logo or featured image">
         <meta property="og:url" content="URL to the template's webpage">
         <meta name="twitter:card" content="summary_large_image">
-        <link rel="shortcut icon" href="{{ URL::asset('images/favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ URL::asset('images/icon.ico') }}">
+        <!-- <link rel="icon" href="{{ URL::asset('images/favicon.ico') }}" sizes="32x32" /> -->
         @vite(['resources/js/app.js'])
         @inertiaHead
     </head>

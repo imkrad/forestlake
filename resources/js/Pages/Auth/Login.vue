@@ -1,6 +1,11 @@
 <template>
     <Head title="Log in"/>
     <div class="auth-page-wrapper pt-5 d-flex justify-content-center align-items-center min-vh-100">
+        <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
+            <!-- <div class="bg-overlay"></div> -->
+
+         
+        </div>
         <div class="auth-page-content">
             <BContainer>
 
@@ -11,31 +16,25 @@
                             <BCardBody class="p-4">
                                 <div class="row mb-2 text-center">
                                     <div class="col-12 mb-2">
-                                        <img src="@assets/images/adzu.png" alt="" style="height: auto; width: 70px;">
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="text-primary mt-1">
-                                            <h4 class="fs-16 fw-semibold">MediRecords</h4>
-                                            <p class="mt-n2">Document Management System</p>
-                                        </div>
+                                        <img src="@assets/images/logo-sm-dark.png" alt="" style="height: auto; width: 250px;">
                                     </div>
                                 </div>
                                 <div v-if="status" class="alert alert-success text-success">
                                     {{ status }}
                                 </div>
-                                <div class="p-2 mt-n2">
+                                <div class="p-2 mb-4 mt-5">
                                     <form class="customform" @submit.prevent="submit">
 
                                         <div class="mb-2">
-                                            <InputLabel for="email" value="Email" />
-                                            <TextInput id="email" v-model="form.email" type="email" class="form-control" placeholder="Please enter email"/>
+                                            <InputLabel for="email" value="Email Address" />
+                                            <TextInput id="email" v-model="form.email" type="email" class="form-control" placeholder="Please enter email address"/>
                                             <InputError :message="form.errors.email" />
                                         </div>
 
                                         <div class="mb-3">
                                             <InputLabel for="password" value="Password" />
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input :type="togglePassword ? 'text' : 'password'" class="form-control pe-5" placeholder="Enter password" id="password-input" v-model="form.password" autocomplete="password" required :class="{ 'is-invalid': form.errors.password }">
+                                                <input :type="togglePassword ? 'text' : 'password'" class="form-control pe-5" placeholder="Please enter password" id="password-input" v-model="form.password" autocomplete="password">
                                                 <BButton variant="link" class="position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon" @click="togglePassword = !togglePassword">
                                                     <i class="ri-eye-fill align-middle"></i>
                                                 </BButton>
@@ -43,21 +42,21 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-check">
+                                        <!-- <div class="form-check">
                                             <Checkbox v-model:checked="form.remember" name="remember" class="form-check-input" id="auth-remember-check" />
                                             <label class="form-check-label" for="auth-remember-check">Remember
                                                 me</label>
-                                        </div>
+                                        </div> -->
 
                                         <div class="mt-4">
-                                            <BButton variant="primary" class="w-100" type="submit" :disabled="form.processing">Sign In</BButton>
+                                            <BButton variant="dark" class="w-100" type="submit" :disabled="form.processing">Log In</BButton>
                                         </div>
 
-                                        <div class="mt-4 fs-10 text-center">
+                                        <!-- <div class="mt-4 fs-10 text-center">
                                             <p class="mb-0">Forgot your password? 
                                                 <Link href="/forgot-password" class="fw-semibold text-primary text-decoration-underline"> Click here</Link>
                                             </p>
-                                        </div>
+                                        </div> -->
 
                                     </form>
                                 </div>
@@ -103,8 +102,8 @@ export default {
     },
 }
 </script>
-<style>
-.auth-page-wrapper {
-    background-color: #405189;
+<style scoped>
+input::placeholder {
+    font-size: 10px;
 }
 </style>

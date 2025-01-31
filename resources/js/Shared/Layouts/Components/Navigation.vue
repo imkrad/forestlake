@@ -100,7 +100,7 @@
                             <img src="@assets/images/job.png" alt="" height="22" />
                         </span>
                         <span class="logo-lg">
-                            <img src="@assets/images/adzu.png" alt="" height="45" />
+                            <img src="@assets/images/logo.png" alt="" height="45" />
                         </span>
                         <span class="fs-24 ms-2">Registrify </span>
                         </Link>
@@ -110,7 +110,7 @@
                             <img src="@assets/images/job.png" alt="" height="22" />
                         </span>
                         <span class="logo-lg">
-                            <img src="@assets/images/adzu.png" alt="" height="45" />
+                            <img src="@assets/images/logo.png" alt="" height="45" />
                         </span>
                         </Link>
                     </div>

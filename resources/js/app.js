@@ -13,7 +13,7 @@ AOS.init({
     duration: 1000
 });
 
-const appName = import.meta.env.VITE_APP_NAME || 'MediRecords';
+const appName = import.meta.env.VITE_APP_NAME || 'ForstLake';
 
 createInertiaApp({
     resolve: (name) => {

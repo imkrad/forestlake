@@ -2,48 +2,63 @@
     <BContainer fluid>
         <div id="two-column-menu"></div>
 
-        <template v-if="layoutType === 'vertical' || layoutType === 'semibox'">
-            <ul class="navbar-nav h-100" id="navbar-nav">
-              <template v-if="$page.props.user.data.role != 'Administrator'">
-                <li class="nav-item" v-for="(menu,index) in $page.props.menus.main" v-bind:key="index">
-                    <Link v-if="!menu.main.has_child" class="nav-link menu-link" :href="menu.main.route" :class="($page.component.startsWith(menu.main.path)) ? 'active' : 'collapsed'" :aria-expanded="($page.component.startsWith(menu.main.route)) ? true : false">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-dashboards">{{menu.main.name}}</span>
-                    </Link>
-                    <Link v-else class="nav-link menu-link" :href="'#'+menu.main.name" :class="($page.component.startsWith(menu.main.path)) ? 'active' : ''" data-bs-toggle="collapse" role="button" :aria-expanded="($page.component.startsWith(menu.main.path)) ? true : false" aria-controls="sidebarAuth">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-scholars">{{menu.main.name}}</span>
-                    </Link>
-                    <div v-if="menu.main.has_child" :class="($page.component.startsWith(menu.main.path)) ? 'collapse show menu-dropdown' : 'collapse menu-dropdown'" :id="menu.main.name">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item" v-for="(sub,index) in menu.submenus" v-bind:key="index">
-                                <Link class="nav-link" :class="($page.url === sub.path) ? 'active' : '' " :href="sub.route">{{sub.name}}</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-              </template>
-              <template v-else>
-                <li class="nav-item" v-for="(menu,index) in $page.props.menus.executive" v-bind:key="index">
-                    <Link v-if="!menu.main.has_child" class="nav-link menu-link" :href="menu.main.route" :class="{'active': $page.component.startsWith(menu.main.path) }">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-dashboards">{{menu.main.name}}</span>
-                    </Link>
-                    <Link v-else class="nav-link menu-link" :href="'#'+menu.main.name" :class="{'active': $page.component.startsWith(menu.main.path) }" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-scholars">{{menu.main.name}}</span>
-                    </Link>
-                    <div v-if="menu.main.has_child" class="collapse menu-dropdown" :id="menu.main.name">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item" v-for="(sub,index) in menu.submenus" v-bind:key="index">
-                                <Link class="nav-link" :class="{'active': $page.url === sub.path }" :href="sub.route">{{sub.name}}</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                </template>
-            </ul>
-        </template>
+        <ul class="navbar-nav h-100" id="navbar-nav">
+              <li class="menu-title">
+                <span data-key="t-menu"> asd</span>
+              </li>
+              <li class="nav-item">
+                <BLink class="nav-link menu-link">
+                  <i class="ri-apps-2-line"></i>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">Dashboard</span>
+                </BLink>
+              </li>
+              <li class="nav-item">
+                <BLink class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
+                  aria-expanded="false" aria-controls="sidebarDashboards">
+                  <i class="ri-dashboard-2-line"></i>
+                  <span data-key="t-dashboards fw-semibold">Dashboard</span>
+                </BLink>
+                <div class="collapse menu-dropdown" id="sidebarDashboards">
+                  <ul class="nav nav-sm flex-column">
+                    <li class="nav-item">
+                      <router-link to="/dashboard/analytics" class="nav-link custom-abc" data-key="t-analytics">
+                     asd
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link to="/dashboard/crm" class="nav-link" data-key="t-crm">
+                      asd
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link to="/" class="nav-link" data-key="t-ecommerce">
+                      asd
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link to="/dashboard/crypto" class="nav-link" data-key="t-crypto">
+                     aasd
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link to="/dashboard/projects" class="nav-link" data-key="t-projects">
+                       asd
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link to="/dashboard/nft" class="nav-link" data-key="t-nft">
+                       asd
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link to="/dashboard/job" class="nav-link" data-key="t-job">
+                     asd
+                      </router-link>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+        </ul>
     </BContainer>
 </template>
 <script>
