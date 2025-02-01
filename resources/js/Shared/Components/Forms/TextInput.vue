@@ -25,6 +25,6 @@ defineExpose({ focus: () => input.value.focus() });
 </template>
 <style scoped>
 input::placeholder {
-    font-size: 12px;
+    font-size: 11px;
 }
 </style>

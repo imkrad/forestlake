@@ -73,6 +73,6 @@ export default {
 </script>
 <style>
 .auth-page-wrapper {
-    background-color: #405189;
+    background-color: #272727;
 }
 </style>

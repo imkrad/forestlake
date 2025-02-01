@@ -30,7 +30,6 @@
                 if (windowSize > 767)
                     document.querySelector(".hamburger-icon").classList.toggle("open");
 
-                //For collapse horizontal menu
                 if (
                     document.documentElement.getAttribute("data-layout") === "horizontal"
                 ) {
@@ -38,8 +37,6 @@
                         document.body.classList.remove("menu") :
                         document.body.classList.add("menu");
                 }
-
-                //For collapse vertical menu
 
                 if (visiblilityType === "show" && (layoutType === "vertical" || layoutType === "semibox")) {
                     if (windowSize < 1025 && windowSize > 767) {
@@ -57,8 +54,6 @@
                         document.documentElement.setAttribute("data-sidebar-size", "lg");
                     }
                 }
-
-                //Two column menu
                 if (document.documentElement.getAttribute("data-layout") == "twocolumn") {
                     document.body.classList.contains("twocolumn-panel") ?
                         document.body.classList.remove("twocolumn-panel") :
@@ -100,9 +95,9 @@
                             <img src="@assets/images/job.png" alt="" height="22" />
                         </span>
                         <span class="logo-lg">
-                            <img src="@assets/images/logo.png" alt="" height="45" />
+                            <img src="@assets/images/logo-long-light.png" alt="" height="45" />
                         </span>
-                        <span class="fs-24 ms-2">Registrify </span>
+                        <span class="fs-24 ms-2">ForestLake</span>
                         </Link>
 
                         <Link href="/" class="logo logo-light">
@@ -110,7 +105,7 @@
                             <img src="@assets/images/job.png" alt="" height="22" />
                         </span>
                         <span class="logo-lg">
-                            <img src="@assets/images/logo.png" alt="" height="45" />
+                            <img src="@assets/images/logo-long-light.png" alt="" height="45" />
                         </span>
                         </Link>
                     </div>
@@ -147,8 +142,6 @@
                             </form>
                         </BDropdownItem>
                     </BDropdown>
-
-                    
 
                     <BDropdown variant="link" class="ms-sm-3 header-item topbar-user"
                         toggle-class="rounded-circle arrow-none" menu-class="dropdown-menu-end"

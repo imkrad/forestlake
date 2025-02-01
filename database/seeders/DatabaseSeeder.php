@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \DB::table('user_profiles')->insert([
-            'firstname' => 'Prince Salman',
-            'lastname' => 'Cabir',
+            'firstname' => 'Miguel',
+            'lastname' => 'Bejerano',
             'middlename' => 'M',
             'avatar' => 'avatar.jpg',
             'gender' => 'Male',
@@ -39,7 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationMunicipalitiesTableSeeder::class);
         $this->call(LocationBarangaysTableSeeder::class);
 
-        $this->call(ListMenusTableSeeder::class);
         $this->call(ListStatusesTableSeeder::class);
         $this->call(ListDropdownsTableSeeder::class);
     }

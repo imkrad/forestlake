@@ -7,17 +7,47 @@
                 <span data-key="t-menu"> asd</span>
               </li>
               <li class="nav-item">
-                <BLink class="nav-link menu-link">
-                  <i class="ri-apps-2-line"></i>
+                <Link href="/dashboard" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Dashboard') }">
+                  <i class="ri-apps-line"></i>
                   <span class="fw-semibold fs-14" data-key="t-dashboards">Dashboard</span>
-                </BLink>
+                </Link>
               </li>
               <li class="nav-item">
-                <BLink class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
+                <Link href="/lots" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Lot') }">
+                  <i class="ri-map-pin-line"></i>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">Lot Plotting & Mapping</span>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link  href="/owners" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Owner') }">
+                  <i class="ri-team-line"></i>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">Owner Management</span>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link  href="/graves" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Grave') }">
+                  <i class="ri-ghost-line"></i>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">Grave Management</span>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link href="/reports" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Report') }">
+                  <i class="ri-line-chart-line"></i>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">Reports & Analytics</span>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link  href="/users" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Users') }">
+                  <i class="ri-account-circle-line"></i>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">User Management</span>
+                </Link>
+              </li>
+              <!-- <li class="nav-item">
+                <Link class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                   aria-expanded="false" aria-controls="sidebarDashboards">
                   <i class="ri-dashboard-2-line"></i>
                   <span data-key="t-dashboards fw-semibold">Dashboard</span>
-                </BLink>
+                </Link>
                 <div class="collapse menu-dropdown" id="sidebarDashboards">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
@@ -57,7 +87,7 @@
                     </li>
                   </ul>
                 </div>
-              </li>
+              </li> -->
         </ul>
     </BContainer>
 </template>
