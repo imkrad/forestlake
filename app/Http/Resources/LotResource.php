@@ -15,6 +15,7 @@ class LotResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'number' => $this->number, 
             'price' => $this->price, 
             'area' => ($this->area) ? $this->area : '-', 

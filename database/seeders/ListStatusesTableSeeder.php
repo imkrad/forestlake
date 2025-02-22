@@ -54,6 +54,18 @@ class ListStatusesTableSeeder extends Seeder
                 'created_at' => '2024-08-18 15:57:50',
                 'updated_at' => '2024-08-18 15:57:50',
             ),
+            3 => 
+            array (
+                'id' => 4,
+                'name' => 'Incomplete',
+                'type' => 'Lot',
+                'color' => 'bg-dark',
+                'others' => 'text-dark',
+                'step' => 1,
+                'is_active' => 1,
+                'created_at' => '2024-08-18 15:57:50',
+                'updated_at' => '2024-08-18 15:57:50',
+            ),
         ));
 
         

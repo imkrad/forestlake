@@ -44,8 +44,14 @@ class OwnerController extends Controller
         $data->user_id = Auth::user()->id;
         $data->save();
         
+        $owned = Owner::findOrFail($data->id);
+        $owner = [
+            'value' => $owned->id,
+            'name' => $owned->name
+        ];
+
         return back()->with([
-            'data' => $data,
+            'data' => $owner,
             'message' => 'Owner was created!', 
             'info' => "You've successfully created new owner.",
             'status' => true

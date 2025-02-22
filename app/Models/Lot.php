@@ -43,4 +43,14 @@ class Lot extends Model
     {
         return $this->hasMany('App\Models\Deceased', 'lot_id');
     }
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = trim(str_replace(',','',$value),'₱');
+    }
+
+    public function getPriceAttribute($value)
+    {
+        return '₱'.number_format($value,2,'.',',');
+    }
 }

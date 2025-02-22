@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lot;
 use App\Models\Block;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -21,7 +22,25 @@ class WelcomeController extends Controller
             case 'lots':
                 return $this->lots($request->code);
             break;
+            case 'lots2':
+                return $this->lots2($request->code);
+            break;
+            case 'owner':
+                return $this->owner($request->code);
+            break;
         }
+    }
+
+    private function owner($code){
+        $data = Owner::when($code, function ($query, $keyword) {
+            $query->where('name','LIKE', "%{$keyword}%");
+        })->take(5)->get()->map(function ($item) {
+            return [
+                'value' => $item->id,
+                'name' => $item->name
+            ];
+        });
+        return $data;
     }
 
     private function blocks($code){
@@ -40,6 +59,20 @@ class WelcomeController extends Controller
             return [
                 'value' => $item->id,
                 'name' => 'Lot - '.$item->number
+            ];
+        });
+        return $data;
+    }
+
+    private function lots2($code){
+        $data = Lot::with('block.section')
+        ->whereHas('owner', function ($query) use ($code) {
+            $query->where('owner_id',$code);
+        })
+        ->where('status_id',1)->get()->map(function ($item) {
+            return [
+                'value' => $item->id,
+                'name' => 'Lot '.$item->number.' - Block '.$item->block->number.' ('.$item->block->name.') - Section '.$item->block->section->name
             ];
         });
         return $data;

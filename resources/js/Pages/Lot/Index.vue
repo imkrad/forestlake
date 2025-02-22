@@ -82,7 +82,7 @@
                             <b-button @click="openView(list)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
-                            <b-button @click="openEdit(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
+                            <b-button v-if="list.status.id == 4" @click="toggleUpdate(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                 <i class="ri-pencil-fill align-bottom"></i>
                             </b-button>
                         </td>
@@ -109,16 +109,18 @@
       </BCol>
     </BRow>
     <Create ref="create"/>
+    <Update @update="set" ref="update"/>
 </template>
 <script>
 import _ from 'lodash';
 import Create from './Create.vue';
+import Update from './Update.vue';
 import simplebar from "simplebar-vue";
 import Multiselect from "@vueform/multiselect";
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Multiselect, Create, simplebar }, 
+    components: { Pagination, PageHeader, Multiselect, Create, simplebar, Update }, 
     props: ['lot_statuses'],
     data(){
         return {
@@ -147,6 +149,10 @@ export default {
         toggleCreate(){
             this.$refs.create.show();
         },
+        toggleUpdate(data,index){
+            this.index = index;
+            this.$refs.update.show(data);
+        },
         checkSearchStr: _.debounce(function(string) {
             this.fetch();
         }, 300),
@@ -169,6 +175,9 @@ export default {
             })
             .catch(err => console.log(err));
         },
+        set(data){
+          this.lists[this.index] = data;
+        }
     }
 }
 </script>
