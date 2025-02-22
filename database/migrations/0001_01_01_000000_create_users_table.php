@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('username',30)->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role',50);

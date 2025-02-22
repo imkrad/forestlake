@@ -15,7 +15,12 @@ class Owner extends Model
         'contact_number',
         'email',
         'address',
-        'avatar'
+        'avatar',
+        'birth_date',
+        'birth_place',
+        'civil_status',
+        'occupation',
+        'user_id'
     ];
 
     public function lots()
@@ -26,5 +31,10 @@ class Owner extends Model
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = ucwords(strtolower($value));
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 }

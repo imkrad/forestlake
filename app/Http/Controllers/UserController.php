@@ -7,6 +7,8 @@ use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -29,8 +31,8 @@ class UserController extends Controller
             })
             ->when($request->keyword, function ($query, $keyword) {
                 $query->whereHas('profile',function ($query) use ($keyword) {
-                    $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$keyword}%")
-                    ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$keyword}%");
+                    $query->where(DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$keyword}%")
+                    ->orWhere(DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$keyword}%");
                 });
             })
             ->where('role','!=','Administrator')
@@ -43,7 +45,6 @@ class UserController extends Controller
     public function store(UserRequest $request){
         $data = User::create(array_merge($request->all(),[
             'password' => bcrypt('123456789'),
-            'username' => $request->firstname[0].$request->lastname,
             'is_active' => 1,
             'email_verified_at' => now()
         ]));

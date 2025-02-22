@@ -10,41 +10,23 @@ class UserResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        if($this->role == 'Student'){
-            $firstname = $this->student->firstname;
-            $lastname = $this->student->lastname;
-            $middlename = $this->student->middlename;
-            $suffix = $this->student->suffix;
-            $sex = $this->student->sex;
-            $contact_no = $this->student->contact_no;
-            $profile_id = $this->student->id;
-            $avatar = '/images/avatars/avatar.jpg';
-            $username = $this->student->id_number;
-            $status = $this->student->status_id;
-        }else{
-            $firstname = $this->profile->firstname;
-            $lastname = $this->profile->lastname;
-            $middlename = $this->profile->middlename;
-            $suffix = $this->profile->suffix;
-            $sex = $this->profile->gender;
-            $contact_no = $this->profile->mobile;
-            $profile_id = $this->profile->id;
-            $avatar = ($this->profile->avatar === 'avatar.jpg') ? '/images/avatars/'.$this->profile->avatar : '/storage/'.$this->profile->avatar;
-            $username = $this->username;
-            $status = null;
-        }
+       
+        $name = $this->profile->name;
+        $sex = $this->profile->gender;
+        $contact_no = $this->profile->mobile;
+        $profile_id = $this->profile->id;
+        $avatar = ($this->profile->avatar === 'avatar.jpg') ? '/images/avatars/'.$this->profile->avatar : '/storage/'.$this->profile->avatar;
+        $username = $this->username;
+        $status = null;
+    
         return [
             'id' => $this->id,
             'username' => $username,
             'email' => $this->email,
             'role' => $this->role,
             'avatar' => $avatar,
-            'name' => $firstname.' '.$lastname,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'middlename' => $middlename,
+            'name' => $name,
             'gender' => $sex,
-            'suffix' => $suffix,
             'mobile' => $contact_no,
             'profile_id' => $profile_id,
             'is_active' => $this->is_active,

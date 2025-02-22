@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,9 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \DB::table('users')->insert([
-            'username' => 'administrator',
-            'email' => 'admin@medirecords.com',
+        DB::table('users')->insert([
+            'email' => 'forestlake@gmail.com',
             'password' => bcrypt('123456789'),
             'role' => 'Administrator',
             'is_active' => 1,
@@ -22,10 +23,8 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        \DB::table('user_profiles')->insert([
-            'firstname' => 'Miguel',
-            'lastname' => 'Bejerano',
-            'middlename' => 'M',
+        DB::table('user_profiles')->insert([
+            'name' => 'Miguel Bejerano',
             'avatar' => 'avatar.jpg',
             'gender' => 'Male',
             'user_id' => 1,

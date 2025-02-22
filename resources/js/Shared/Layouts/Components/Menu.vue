@@ -31,63 +31,17 @@
                 </Link>
               </li>
               <li class="nav-item">
-                <Link href="/reports" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Report') }">
-                  <i class="ri-line-chart-line"></i>
-                  <span class="fw-semibold fs-14" data-key="t-dashboards">Reports & Analytics</span>
-                </Link>
-              </li>
-              <li class="nav-item">
                 <Link  href="/users" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Users') }">
                   <i class="ri-account-circle-line"></i>
                   <span class="fw-semibold fs-14" data-key="t-dashboards">User Management</span>
                 </Link>
               </li>
-              <!-- <li class="nav-item">
-                <Link class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="sidebarDashboards">
-                  <i class="ri-dashboard-2-line"></i>
-                  <span data-key="t-dashboards fw-semibold">Dashboard</span>
+              <li class="nav-item">
+                <Link href="/reports" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Report') }">
+                  <i class="ri-line-chart-line"></i>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">Reports & Analytics</span>
                 </Link>
-                <div class="collapse menu-dropdown" id="sidebarDashboards">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <router-link to="/dashboard/analytics" class="nav-link custom-abc" data-key="t-analytics">
-                     asd
-                      </router-link>
-                    </li>
-                    <li class="nav-item">
-                      <router-link to="/dashboard/crm" class="nav-link" data-key="t-crm">
-                      asd
-                      </router-link>
-                    </li>
-                    <li class="nav-item">
-                      <router-link to="/" class="nav-link" data-key="t-ecommerce">
-                      asd
-                      </router-link>
-                    </li>
-                    <li class="nav-item">
-                      <router-link to="/dashboard/crypto" class="nav-link" data-key="t-crypto">
-                     aasd
-                      </router-link>
-                    </li>
-                    <li class="nav-item">
-                      <router-link to="/dashboard/projects" class="nav-link" data-key="t-projects">
-                       asd
-                      </router-link>
-                    </li>
-                    <li class="nav-item">
-                      <router-link to="/dashboard/nft" class="nav-link" data-key="t-nft">
-                       asd
-                      </router-link>
-                    </li>
-                    <li class="nav-item">
-                      <router-link to="/dashboard/job" class="nav-link" data-key="t-job">
-                     asd
-                      </router-link>
-                    </li>
-                  </ul>
-                </div>
-              </li> -->
+              </li>
         </ul>
     </BContainer>
 </template>

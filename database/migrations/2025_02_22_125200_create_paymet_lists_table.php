@@ -11,18 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deceaseds', function (Blueprint $table) {
+        Schema::create('paymet_lists', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name',200);
-            $table->date('birth_date');
-            $table->date('death_date');
-            $table->date('burial_date');
-            $table->longText('cause_of_death'); 
+            $table->decimal('price',12,2)->default(0);
             $table->integer('lot_id')->unsigned()->index();
             $table->foreign('lot_id')->references('id')->on('lots')->onDelete('cascade');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deceaseds');
+        Schema::dropIfExists('paymet_lists');
     }
 };

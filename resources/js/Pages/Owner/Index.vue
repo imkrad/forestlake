@@ -21,34 +21,20 @@
           <BCardBody class="border border-dashed border-end-0 border-start-0">
             <BFrom>
               <BRow class="g-3">
-                <BCol xxl="5" sm="12">
+                <BCol xxl="10" sm="12">
                   <div class="search-box">
                     <input type="text" class="form-control search bg-light border-light"
                       placeholder="Search owner name" v-model="keyword" />
                     <i class="ri-search-line search-icon"></i>
                   </div>
                 </BCol>
+                <BCol xxl="2" sm="4">
+                    <div class="d-grid gap-2" >
+                      <BButton variant="dark" class="add-btn" @click="toggleCreate">
+                        <i class="ri-add-line align-bottom me-1"></i>New Owner
+                      </BButton>
+                    </div>
 
-                <BCol xxl="3" sm="4">
-                    <Multiselect v-model="status" placeholder="Filter by Status" :close-on-select="true" label="name" :options="lot_statuses" />
-                </BCol>
-
-                <BCol xxl="3" sm="4">
-                  <div class="input-light">
-                    <Multiselect v-model="filtervalue1" :close-on-select="true" :searchable="true" :create-option="true"
-                      :options="[
-                        { value: 'All', label: 'All' },
-                        { value: 'New', label: 'New' },
-                        { value: 'Pending', label: 'Pending' },
-                        { value: 'Inprogress', label: 'Inprogress' },
-                        { value: 'Completed', label: 'Completed' },
-                      ]" />
-                  </div>
-                </BCol>
-                <BCol xxl="1" sm="4">
-                    <BButton variant="dark" class="add-btn" @click="toggleCreate">
-                    <i class="ri-add-line align-bottom me-1"></i>New Owner
-                  </BButton>
                 </BCol>
               </BRow>
             </BFrom>

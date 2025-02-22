@@ -12,10 +12,7 @@ class UserProfile extends Model
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'firstname', 
-        'lastname', 
-        'middlename',
-        'suffix',
+        'name',
         'gender',
         'mobile',
         'user_id',
@@ -27,19 +24,9 @@ class UserProfile extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
-    public function setFirstnameAttribute($value)
+    public function setNameAttribute($value)
     {
-        $this->attributes['firstname'] = ucwords(strtolower($value));
-    }
-
-    public function setLastnameAttribute($value)
-    {
-        $this->attributes['lastname'] = ucwords(strtolower($value));
-    }
-
-    public function setMiddlenameAttribute($value)
-    {
-        $this->attributes['middlename'] = ucwords(strtolower($value));
+        $this->attributes['name'] = ucwords(strtolower($value));
     }
 
     protected static $recordEvents = ['updated'];

@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owner_lots', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->decimal('total',12,2)->default(0);
+            $table->tinyInteger('type_id')->unsigned()->index();
+            $table->foreign('type_id')->references('id')->on('list_dropdowns')->onDelete('cascade');
             $table->integer('owner_id')->unsigned()->index();
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');
-            $table->integer('lot_id')->unsigned()->index();
-            $table->foreign('lot_id')->references('id')->on('lots')->onDelete('cascade');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owner_lots');
+        Schema::dropIfExists('payments');
     }
 };

@@ -21,7 +21,7 @@
           <BCardBody class="border border-dashed border-end-0 border-start-0">
             <BFrom>
               <BRow class="g-3">
-                <BCol xxl="5" sm="12">
+                <BCol xxl="8" sm="12">
                   <div class="search-box">
                     <input type="text" class="form-control search bg-light border-light"
                       placeholder="Search a lot" v-model="searchQuery" />
@@ -33,18 +33,7 @@
                     <Multiselect v-model="status" placeholder="Filter by Status" :close-on-select="true" label="name" :options="lot_statuses" />
                 </BCol>
 
-                <BCol xxl="3" sm="4">
-                  <div class="input-light">
-                    <Multiselect v-model="filtervalue1" :close-on-select="true" :searchable="true" :create-option="true"
-                      :options="[
-                        { value: 'All', label: 'All' },
-                        { value: 'New', label: 'New' },
-                        { value: 'Pending', label: 'Pending' },
-                        { value: 'Inprogress', label: 'Inprogress' },
-                        { value: 'Completed', label: 'Completed' },
-                      ]" />
-                  </div>
-                </BCol>
+                
                 <BCol xxl="1" sm="4">
                     <BButton variant="danger" class="add-btn" @click="toggleCreate">
                     <i class="ri-add-line align-bottom me-1"></i>New Block

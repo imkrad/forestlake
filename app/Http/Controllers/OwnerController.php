@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Owner;
 use App\Http\Resources\OwnerResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
@@ -36,6 +37,11 @@ class OwnerController extends Controller
         $data->contact_number = $request->contact_number;
         $data->email = $request->email;
         $data->address = $request->address;
+        $data->birth_date = $request->birth_date;
+        $data->birth_place = $request->birth_place;
+        $data->civil_status = $request->civil_status;
+        $data->occupation = $request->occupation;
+        $data->user_id = Auth::user()->id;
         $data->save();
         
         return back()->with([

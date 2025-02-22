@@ -11,7 +11,8 @@ class OwnerLot extends Model
 
     protected $fillable = [
         'owner_id',
-        'lot_id'
+        'lot_id',
+        'user_id'
     ];
 
     public function lot()
@@ -22,5 +23,10 @@ class OwnerLot extends Model
     public function owner()
     {
         return $this->belongsTo('App\Models\Owner', 'owner_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 }

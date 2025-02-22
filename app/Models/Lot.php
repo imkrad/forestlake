@@ -29,9 +29,18 @@ class Lot extends Model
         return $this->belongsTo('App\Models\ListStatus', 'status_id', 'id');
     }
 
-
     public function coordinate()
     {
         return $this->hasOne('App\Models\LotCoordinate', 'lot_id');
+    }
+
+    public function owner()
+    {
+        return $this->hasOne('App\Models\OwnerLot', 'lot_id');
+    }
+
+    public function deceaseds()
+    {
+        return $this->hasMany('App\Models\Deceased', 'lot_id');
     }
 }

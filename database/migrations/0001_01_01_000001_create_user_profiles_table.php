@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('firstname',150);
-            $table->string('lastname',150);
-            $table->string('middlename',100)->nullable();
-            $table->string('suffix',10)->nullable();
+            $table->string('name',200);
             $table->string('gender',8);
             $table->string('mobile',15);
-            $table->string('avatar', 2048)->default('avatar');
+            $table->string('avatar', 2048)->default('avatar.jpg');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
