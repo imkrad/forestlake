@@ -33,7 +33,7 @@ class ListStatusesTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 2,
-                'name' => 'Reserved',
+                'name' => 'Occupied',
                 'type' => 'Lot',
                 'color' => 'bg-warning',
                 'others' => 'text-warning',
@@ -45,23 +45,11 @@ class ListStatusesTableSeeder extends Seeder
             2 => 
             array (
                 'id' => 3,
-                'name' => 'Sold',
+                'name' => 'Full',
                 'type' => 'Lot',
                 'color' => 'bg-danger',
                 'others' => 'text-danger',
                 'step' => 1,
-                'is_active' => 1,
-                'created_at' => '2024-08-18 15:57:50',
-                'updated_at' => '2024-08-18 15:57:50',
-            ),
-            3 => 
-            array (
-                'id' => 4,
-                'name' => 'Occupied',
-                'type' => 'Lot',
-                'color' => 'bg-dark',
-                'others' => 'text-dark',
-                'step' => 2,
                 'is_active' => 1,
                 'created_at' => '2024-08-18 15:57:50',
                 'updated_at' => '2024-08-18 15:57:50',

@@ -52,7 +52,7 @@ class GraveController extends Controller
         $data->lot_id = $request->lot_id;
         $data->user_id = Auth::user()->id;
         if($data->save()){
-            Lot::where('id',$request->lot_id)->update(['is_available' => 0, 'status_id' => 4]);
+            Lot::where('id',$request->lot_id)->update(['is_available' => 0, 'status_id' => 3]);
         }
         
         return back()->with([
