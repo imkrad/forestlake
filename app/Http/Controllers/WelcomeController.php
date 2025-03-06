@@ -33,11 +33,12 @@ class WelcomeController extends Controller
 
     private function owner($code){
         $data = Owner::when($code, function ($query, $keyword) {
-            $query->where('name','LIKE', "%{$keyword}%");
+            $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$keyword}%")
+                    ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$keyword}%");
         })->take(5)->get()->map(function ($item) {
             return [
                 'value' => $item->id,
-                'name' => $item->name
+                'name' => $item->firstname.' '.$item->lastname
             ];
         });
         return $data;

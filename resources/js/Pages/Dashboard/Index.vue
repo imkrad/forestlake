@@ -57,7 +57,7 @@
                                                 {{ (meta.current_page - 1) * meta.per_page + index + 1 }}.
                                             </td>
                                             <td class="text-center">
-                                                <h5 class="fs-13 mb-0 text-dark">{{list.lot.owner.owner.name}}</h5>
+                                                <h5 class="fs-13 mb-0 text-dark">{{list.lot.owner.owner.firstname}} {{list.lot.owner.owner.lastname}}</h5>
                                             </td>
                                             <td class="text-center fs-12">{{list.name}}</td>
                                             <td class="text-center fs-12">{{list.lot.number}}</td>
