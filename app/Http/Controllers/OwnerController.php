@@ -6,6 +6,7 @@ use App\Models\Owner;
 use App\Http\Resources\OwnerResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\OwnerRequest;
 
 class OwnerController extends Controller
 {
@@ -30,9 +31,12 @@ class OwnerController extends Controller
         return OwnerResource::collection($data);
     }
 
-    public function store(Request $request){
+    public function store(OwnerRequest $request){
         $data = new Owner;
-        $data->name = $request->name;
+        $data->firstname = $request->firstname;
+        $data->middlename = $request->middlename;
+        $data->lastname = $request->lastname;
+        $data->suffix = $request->suffix;
         $data->gender = $request->gender;
         $data->contact_number = $request->contact_number;
         $data->email = $request->email;

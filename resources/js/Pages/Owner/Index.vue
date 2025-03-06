@@ -61,7 +61,7 @@
                             {{ (meta.current_page - 1) * meta.per_page + index + 1 }}.
                         </td>
                         <td>
-                            <h5 class="fs-13 mb-0 text-dark">{{list.name}}</h5>
+                            <h5 class="fs-13 mb-0 text-dark">{{list.lastname}}, {{list.firstname}} {{list.middlename}}</h5>
                         </td>
                         <td class="text-center fs-12">{{list.gender}}</td>
                         <td class="text-center fs-12">{{list.contact_number}}</td>
@@ -101,7 +101,7 @@
         </BCard>
       </BCol>
     </BRow>
-    <Create @update="fetch" ref="create"/>
+    <Create @update="fetch()" ref="create"/>
 </template>
 <script>
 import _ from 'lodash';

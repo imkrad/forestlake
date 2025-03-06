@@ -1,6 +1,6 @@
 <template>
     <!-- style="--vz-modal-width: 800px;" -->
-    <b-modal v-model="showModal" header-class="p-3 bg-dark-subtle" title="Create Owner" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
+    <b-modal v-model="showModal" header-class="p-3 bg-dark-subtle" title="Create Staff" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
         <form class="customform">
             <BRow class="g-3 mt-2">
                 
@@ -8,17 +8,13 @@
                     <InputLabel for="name" value="Fullname" :message="form.errors.name"/>
                     <TextInput type="text" v-model="form.name" class="form-control" placeholder="Please enter name" @input="handleInput('name')" :light="true"/>
                 </BCol>
-                <BCol lg="6" class="mt-n1">
+                <BCol lg="12" class="mt-0">
                     <InputLabel for="name" value="Email" :message="form.errors.email"/>
                     <TextInput type="text" v-model="form.email" class="form-control" placeholder="Please enter email" @input="handleInput('description')" :light="true"/>
                 </BCol>
-                <BCol lg="6" class="mt-n1">
+                <BCol lg="12" class="mt-0">
                     <InputLabel for="name" value="Mobile" :message="form.errors.mobile"/>
                     <TextInput type="text" v-model="form.mobile" class="form-control" placeholder="Please enter mobile" @input="handleInput('mobile')" :light="true"/>
-                </BCol>
-                <BCol lg="12" class="mt-n1">
-                    <InputLabel for="name" value="Address" :message="form.errors.address"/>
-                    <TextInput type="text" v-model="form.address" class="form-control" placeholder="Please enter address" @input="handleInput('address')" :light="true"/>
                 </BCol>
                 <BCol lg="6" style="margin-top: 13px; margin-bottom: -12px;" class="fs-12" :class="(form.errors.gender) ? 'text-danger' : ''">Please select sex :</BCol>
                 <BCol lg="6" style="margin-top: 13px; margin-bottom: -12px;">

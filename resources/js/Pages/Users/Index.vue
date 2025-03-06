@@ -5,7 +5,7 @@
         <BCard no-body id="tasksList">
           <BCardHeader class="border-0">
             <div class="d-flex align-items-center">
-              <h5 class="card-title mb-0 flex-grow-1">User Management</h5>
+              <h5 class="card-title mb-0 flex-grow-1">Staff Management</h5>
               <div class="flex-shrink-0">
                 <div class="d-flex flex-wrap gap-2">
                   <BButton variant="soft-danger" class="me-1" id="remove-actions" @click="deleteMultiple">
@@ -32,7 +32,7 @@
                 <BCol xxl="2" sm="4">
                     <div class="d-grid gap-2" >
                       <BButton variant="dark" class="add-btn" @click="toggleCreate">
-                        <i class="ri-add-line align-bottom me-1"></i>New User
+                        <i class="ri-add-line align-bottom me-1"></i>New Staff
                       </BButton>
                     </div>
 

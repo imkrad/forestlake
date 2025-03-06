@@ -3,11 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title inertia>MediRecords</title>
+        <title inertia>ForestLake</title>
         <meta name="description" content="Management Information System">
-        <meta name="keywords" content="MIS, Medirecords">
+        <meta name="keywords" content="MIS, ForestLake">
         <meta name="author" content="BSIT">
-        <meta property="og:title" content="MediRecords">
+        <meta property="og:title" content="ForestLake">
         <meta property="og:description" content="Management Information System">
         <meta property="og:image" content="URL to the template's logo or featured image">
         <meta property="og:url" content="URL to the template's webpage">

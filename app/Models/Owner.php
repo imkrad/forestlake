@@ -28,9 +28,19 @@ class Owner extends Model
         return $this->hasMany('App\Models\OwnerLot', 'owner_id');
     }
 
-    public function setNameAttribute($value)
+    public function setFirstnameAttribute($value)
     {
-        $this->attributes['name'] = ucwords(strtolower($value));
+        $this->attributes['firstname'] = ucwords(strtolower($value));
+    }
+
+    public function setLastnameAttribute($value)
+    {
+        $this->attributes['lastname'] = ucwords(strtolower($value));
+    }
+
+    public function setMiddlenameAttribute($value)
+    {
+        $this->attributes['middlename'] = ucwords(strtolower($value));
     }
 
     public function user()

@@ -29,19 +29,19 @@
             <BRow class="g-3 mt-n1" v-for="(block, index) in form.blocks" :key="index">
                 <BCol lg="2" class="mt-1">
                     <InputLabel value="Number" :message="form.errors['blocks.'+index+'.number']"/>
-                    <TextInput v-model="block.number" type="text" class="form-control" placeholder="Please enter campus" @input="handleInput('block')" :light="true" />
+                    <TextInput v-model="block.number" type="text" class="form-control" placeholder="Please enter number" @input="handleInput('block')" :light="true" />
                 </BCol>
                 <BCol lg="5" class="mt-1">
                     <InputLabel value="Name" :message="form.errors['blocks.'+index+'.name']"/>
-                    <TextInput v-model="block.name" type="text" class="form-control" placeholder="Please enter campus" @input="handleInput('block')" :light="true" />
+                    <TextInput v-model="block.name" type="text" class="form-control" placeholder="Please enter name" @input="handleInput('block')" :light="true" />
                 </BCol>
                 <BCol lg="3" class="mt-1">
                     <InputLabel value="Area" :message="form.errors['blocks.'+index+'.area']"/>
-                    <TextInput v-model="block.area" type="text" class="form-control" placeholder="Please enter campus" @input="handleInput('block')" :light="true" />
+                    <TextInput v-model="block.area" type="text" class="form-control" placeholder="Please enter area" @input="handleInput('block')" :light="true" />
                 </BCol>
                 <BCol lg="2" class="mt-1">
                     <InputLabel value="Lots" :message="form.errors['blocks.'+index+'.lots']"/>
-                    <TextInput v-model="block.lots" type="text" class="form-control" placeholder="Please enter campus" @input="handleInput('block')" :light="true" />
+                    <TextInput v-model="block.lots" type="text" class="form-control" placeholder="Please enter lots" @input="handleInput('block')" :light="true" />
                 </BCol>
             </BRow>
         </form>

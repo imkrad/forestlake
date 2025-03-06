@@ -29,9 +29,9 @@
                 <div class="col-lg-12 mt-n1">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">List of Appointments</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">List of Records</h4>
                             <div class="flex-shrink-0">
-                                <button @click="openCreate" type="button" class="btn btn-primary waves-effect waves-light">New Appointment</button>
+                                <button @click="openCreate" type="button" class="btn btn-primary waves-effect waves-light">New Record</button>
                             </div>
                         </div>
                         <div class="card-body" style="height: calc(100vh - 450px); overflow: auto;">

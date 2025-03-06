@@ -8,6 +8,7 @@ use App\Models\Lot;
 use App\Models\Section;
 use App\Models\Deceased;
 use Illuminate\Http\Request;
+use App\Http\Requests\GraveRequest;
 use App\Http\Resources\DeceasedResource;
 
 class GraveController extends Controller
@@ -42,7 +43,7 @@ class GraveController extends Controller
         return $data;
     }
 
-    public function store(Request $request){
+    public function store(GraveRequest $request){
         $data = new Deceased;
         $data->name = $request->name;
         $data->death_date = $request->death_date;

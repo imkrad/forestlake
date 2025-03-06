@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('owners', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name',200);
+            $table->string('firstname',200);
+            $table->string('middlename',200);
+            $table->string('lastname',200);
+            $table->string('suffix',200)->nullable();
             $table->string('gender',8);
             $table->string('civil_status',100);
             $table->string('contact_number',15);
