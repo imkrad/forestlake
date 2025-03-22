@@ -4,12 +4,16 @@
             <BRow class="g-3 mt-2">
                 
                 <BCol lg="4" class="mt-n1">
-                    <InputLabel for="name" value="Section Name" :message="form.errors.name"/>
-                    <TextInput type="text" v-model="form.name" class="form-control" placeholder="Please enter name" @input="handleInput('name')" :light="true"/>
+                    <InputLabel for="name" value="Phase" :message="form.errors.phase_id"/>
+                    <Multiselect v-model="form.phase_id" placeholder="Select Phase" :close-on-select="true" label="name" :options="phases" />
                 </BCol>
-                <BCol lg="8" class="mt-n1">
-                    <InputLabel for="name" value="Description" :message="form.errors.description"/>
-                    <TextInput type="text" v-model="form.description" class="form-control" placeholder="Please enter description" @input="handleInput('description')" :light="true"/>
+                <BCol lg="4" class="mt-n1">
+                    <InputLabel for="name" value="Area" :message="form.errors.area_id"/>
+                    <Multiselect v-model="form.area_id" placeholder="Select Area" :close-on-select="true" label="name" :options="areas" />
+                </BCol>
+                <BCol lg="4" class="mt-n1">
+                    <InputLabel for="name" value="Section" :message="form.errors.section_id"/>
+                    <Multiselect v-model="form.section_id" placeholder="Select Area" :close-on-select="true" label="name" :options="sections" />
                 </BCol>
                 <BCol lg="12">
                     <div class="table-responsive mt-n2 mb-2">
@@ -27,19 +31,15 @@
                 </BCol>
             </BRow>
             <BRow class="g-3 mt-n1" v-for="(block, index) in form.blocks" :key="index">
-                <BCol lg="2" class="mt-1">
-                    <InputLabel value="Number" :message="form.errors['blocks.'+index+'.number']"/>
-                    <TextInput v-model="block.number" type="text" class="form-control" placeholder="Please enter number" @input="handleInput('block')" :light="true" />
+                <BCol lg="4" class="mt-1">
+                    <InputLabel value="Block" :message="form.errors['blocks.'+index+'.block']"/>
+                    <TextInput v-model="block.block" type="text" class="form-control" placeholder="Please enter block" @input="handleInput('block')" :light="true" />
                 </BCol>
-                <BCol lg="5" class="mt-1">
-                    <InputLabel value="Name" :message="form.errors['blocks.'+index+'.name']"/>
-                    <TextInput v-model="block.name" type="text" class="form-control" placeholder="Please enter name" @input="handleInput('block')" :light="true" />
+                <BCol lg="4" class="mt-1">
+                    <InputLabel value="Size" :message="form.errors['blocks.'+index+'.size']"/>
+                    <TextInput v-model="block.size" type="text" class="form-control" placeholder="Please enter size" @input="handleInput('block')" :light="true" />
                 </BCol>
-                <BCol lg="3" class="mt-1">
-                    <InputLabel value="Area" :message="form.errors['blocks.'+index+'.area']"/>
-                    <TextInput v-model="block.area" type="text" class="form-control" placeholder="Please enter area" @input="handleInput('block')" :light="true" />
-                </BCol>
-                <BCol lg="2" class="mt-1">
+                <BCol lg="4" class="mt-1">
                     <InputLabel value="Lots" :message="form.errors['blocks.'+index+'.lots']"/>
                     <TextInput v-model="block.lots" type="text" class="form-control" placeholder="Please enter lots" @input="handleInput('block')" :light="true" />
                 </BCol>
@@ -54,20 +54,21 @@
 <script>
 import _ from 'lodash';
 import { useForm } from '@inertiajs/vue3';
+import Multiselect from "@vueform/multiselect";
 import InputLabel from '@/Shared/Components/Forms/InputLabel.vue';
 import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 export default {
-    components: { InputLabel, TextInput },
+    components: { InputLabel, TextInput, Multiselect },
+    props: ['phases','areas','sections'],
     data(){
         return {
             currentUrl: window.location.origin,
             form: useForm({
                 id: null,
-                name: null,
-                number: null,
-                description: null,
-                area: null,
-                blocks: [{ name: '', number: null, area: null, lots: null }],
+                section_id: null,
+                area_id: null,
+                phase_id: null,
+                blocks: [{ block: '', size: null, lots: null }],
             }),
             showModal: false,
             editable: false

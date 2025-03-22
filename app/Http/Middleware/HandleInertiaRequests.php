@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\User;
 use App\Models\ListStatus;
+use App\Models\ListDropdown;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use App\Http\Resources\UserResource;
@@ -36,6 +37,24 @@ class HandleInertiaRequests extends Middleware
                     'type' => $item->type,
                     'color' => $item->color,
                     'others' => $item->others,
+                ];
+            }),
+            'phases' => ListDropdown::where('classification','Phase')->get()->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'name' => $item->name
+                ];
+            }),
+            'areas' => ListDropdown::where('classification','Area')->get()->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'name' => $item->name
+                ];
+            }),
+            'sections' => ListDropdown::where('classification','Section')->get()->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'name' => 'Section '.$item->name
                 ];
             })
         ];

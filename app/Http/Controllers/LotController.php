@@ -6,6 +6,7 @@ use App\Rules\NotZeroPeso;
 use App\Models\Lot;
 use App\Models\Block;
 use App\Models\Section;
+use App\Models\ListDropdown;
 use App\Models\LotCoordinate;
 use Illuminate\Http\Request;
 use App\Http\Resources\LotResource;
@@ -23,9 +24,9 @@ class LotController extends Controller
     }
 
     private function lists($request){
-        $data = Lot::with('block.section','coordinate','status')
+        $data = Lot::with('block.section.section','block.section.area','block.section.phase','coordinate','status')
             ->when($request->keyword, function ($query, $keyword) {
-                $query->where('number','LIKE', "%{$keyword}%");
+                $query->where('lot','LIKE', "%{$keyword}%");
             })
             ->when($request->status, function ($query, $status) {
                 $query->where('status_id',$status);
@@ -38,21 +39,21 @@ class LotController extends Controller
 
     public function store(Request $request){
         $section = new Section;
-        $section->name = $request->name;
-        $section->description = $request->description;
+        $section->section_id = $request->section_id;
+        $section->area_id = $request->area_id;
+        $section->phase_id = $request->phase_id;
         $section->save();
         if($section){
             foreach($request->blocks as $index => $block){
                 $data = $section->blocks()->create([
-                    'number' => $block['number'],
-                    'name' => $block['name'],
-                    'area' => $block['area']
+                    'block' => $block['block'],
+                    'size' => $block['size']
                 ]);
                 if($data){
                     $lots = $block['lots'];
                     for ($i = 1; $i <= $lots; $i++) {
                         $data->lots()->create([
-                            'number' => $i,
+                            'lot' => $i,
                             'status_id' => 4
                         ]);
                     }

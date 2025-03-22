@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('number');
-            $table->string('name',100); 
-            $table->longText('description')->nullable(); 
-            $table->string('area');  
+            $table->integer('block'); 
+            $table->string('size');  
             $table->boolean('is_active')->default(1);
             $table->integer('section_id')->unsigned()->index();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');

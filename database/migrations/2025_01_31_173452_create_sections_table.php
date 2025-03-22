@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name',100)->unique();
-            $table->longText('description'); 
             $table->boolean('is_active')->default(1);
+            $table->tinyInteger('section_id')->unsigned()->index();
+            $table->foreign('section_id')->references('id')->on('list_dropdowns')->onDelete('cascade');
+            $table->tinyInteger('area_id')->unsigned()->index();
+            $table->foreign('area_id')->references('id')->on('list_dropdowns')->onDelete('cascade');
+            $table->tinyInteger('phase_id')->unsigned()->index();
+            $table->foreign('phase_id')->references('id')->on('list_dropdowns')->onDelete('cascade');
             $table->timestamps();
         });
     }

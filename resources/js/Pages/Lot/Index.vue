@@ -21,7 +21,7 @@
           <BCardBody class="border border-dashed border-end-0 border-start-0">
             <BFrom>
               <BRow class="g-3">
-                <BCol xxl="8" sm="12">
+                <BCol xxl="3" sm="12">
                   <div class="search-box">
                     <input type="text" class="form-control search bg-light border-light"
                       placeholder="Search a lot" v-model="searchQuery" />
@@ -29,8 +29,17 @@
                   </div>
                 </BCol>
 
-                <BCol xxl="3" sm="4">
+                <BCol xxl="2" sm="4">
                     <Multiselect v-model="status" placeholder="Filter by Status" :close-on-select="true" label="name" :options="lot_statuses" />
+                </BCol>
+                <BCol xxl="2" sm="4">
+                    <Multiselect v-model="section" placeholder="Filter by Section" :close-on-select="true" label="name" :options="sections" />
+                </BCol>
+                <BCol xxl="2" sm="4">
+                    <Multiselect v-model="area" placeholder="Filter by Area" :close-on-select="true" label="name" :options="areas" />
+                </BCol>
+                <BCol xxl="2" sm="4">
+                    <Multiselect v-model="phase" placeholder="Filter by Phase" :close-on-select="true" label="name" :options="phases" />
                 </BCol>
 
                 
@@ -50,9 +59,9 @@
                   <tr>
                     <th class="text-center" style="width: 4%;">#</th>
                     <th >Lot Name</th>
-                    <th class="text-center">Block</th>
                     <th class="text-center">Section</th>
                     <th class="text-center">Area</th>
+                    <th class="text-center">Phase</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">Availability</th>
                     <th class="text-center">Status</th>
@@ -65,11 +74,11 @@
                             {{ (meta.current_page - 1) * meta.per_page + index + 1 }}.
                         </td>
                         <td>
-                            <h5 class="fs-13 mb-0 text-dark">Lot {{list.number}}</h5>
+                            <h5 class="fs-13 mb-0 text-dark">Lot {{list.lot}} - Block {{ list.block }}</h5>
                         </td>
-                        <td class="text-center fs-12">Block {{list.block_number}} - {{ list.block_name }}</td>
-                        <td class="text-center fs-12">{{list.section}}</td>
+                        <td class="text-center fs-12">Section {{list.section}}</td>
                         <td class="text-center fs-12">{{list.area}}</td>
+                        <td class="text-center fs-12">{{list.phase}}</td>
                         <td class="text-center fs-12">{{list.price}}</td>
                         <td class="text-center">
                             <i v-if="list.is_available" class="ri-checkbox-circle-fill text-success fs-18"></i>
@@ -108,7 +117,7 @@
         </BCard>
       </BCol>
     </BRow>
-    <Create ref="create"/>
+    <Create :phases="phases" :areas="areas" :sections="sections" ref="create"/>
     <Update @update="set" ref="update"/>
 </template>
 <script>
@@ -121,7 +130,7 @@ import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
     components: { Pagination, PageHeader, Multiselect, Create, simplebar, Update }, 
-    props: ['lot_statuses'],
+    props: ['lot_statuses','phases','areas','sections'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -131,6 +140,9 @@ export default {
             index: null,
             keyword: null,
             status: null,
+            phase: null,
+            area: null,
+            section: null,
             index: null,
         }
     },
@@ -139,6 +151,15 @@ export default {
             this.checkSearchStr(newVal)
         },
         "status"(newVal){
+            this.fetch();
+        },
+        "section"(newVal){
+            this.fetch();
+        },
+        "area"(newVal){
+            this.fetch();
+        },
+        "phase"(newVal){
             this.fetch();
         }
     },
@@ -162,6 +183,9 @@ export default {
                 params : {
                     keyword: this.keyword,
                     status: this.status,
+                    phase: this.phase,
+                    area: this.area,
+                    section: this.section,
                     count: 10,
                     option: 'lists'
                 }

@@ -16,15 +16,16 @@ class LotResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'number' => $this->number, 
+            'lot' => $this->lot, 
             'price' => $this->price, 
             'area' => ($this->area) ? $this->area : '-', 
             'is_available' => $this->is_available, 
             'status' => $this->status,
             'coordinate' => $this->coordinate,
-            'block_number' => $this->block->number,
-            'block_name' => $this->block->name,
-            'section' => $this->block->section->name,
+            'block' => $this->block->block,
+            'section' => $this->block->section->section->name,
+            'area' => $this->block->section->area->name,
+            'phase' => $this->block->section->phase->name,
             'created_at' => $this->created_at
         ];
     }

@@ -8,7 +8,7 @@
                             <thead class="table-light">
                                 <tr class="fs-11">
                                     <th class="fs-14 text-primary align-middle">
-                                        LOT {{ selected.number }} - BLOCK {{ selected.block_number }} ({{ selected.block_name }}) - {{ selected.section }}
+                                        LOT {{ selected.lot }} - BLOCK {{ selected.block }} - SECTION {{ selected.section }}
                                     </th>
                                 </tr>
                             </thead>

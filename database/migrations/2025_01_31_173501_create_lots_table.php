@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('lots', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('number');
+            $table->integer('lot');
             $table->decimal('price',12,2)->default(0);
             $table->string('area')->nullable();
             $table->boolean('is_available')->default(1);

@@ -10,10 +10,8 @@ class Block extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
-        'name',
-        'description',
-        'area',
+        'block',
+        'size',
         'is_active',
         'section_id',
         'is_available'

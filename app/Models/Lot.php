@@ -10,7 +10,7 @@ class Lot extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
+        'lot',
         'price',
         'area',
         'is_active',
