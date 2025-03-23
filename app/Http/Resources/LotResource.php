@@ -27,6 +27,7 @@ class LotResource extends JsonResource
             'section' => $this->block->section->section->name,
             'area' => $this->block->section->area->name,
             'phase' => $this->block->section->phase->name,
+            'deceaseds' => $this->deceaseds,
             'created_at' => $this->created_at
         ];
     }

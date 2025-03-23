@@ -21,7 +21,7 @@ class OwnerController extends Controller
     }
 
     private function lists($request){
-        $data = Owner::with('lots')
+        $data = Owner::with('lots.lot.block.section.area','lots.lot.block.section.phase','lots.lot.deceaseds')
             ->when($request->keyword, function ($query, $keyword) {
                 $query->where('name','LIKE', "%{$keyword}%");
             })

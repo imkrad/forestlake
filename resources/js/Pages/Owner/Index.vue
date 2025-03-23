@@ -102,16 +102,18 @@
       </BCol>
     </BRow>
     <Create @update="fetch()" ref="create"/>
+    <View ref="view"/>
 </template>
 <script>
 import _ from 'lodash';
+import View from './View.vue';
 import Create from './Create.vue';
 import simplebar from "simplebar-vue";
 import Multiselect from "@vueform/multiselect";
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Multiselect, simplebar, Create }, 
+    components: { Pagination, PageHeader, Multiselect, simplebar, Create, View }, 
     data(){
         return {
             currentUrl: window.location.origin,
@@ -154,6 +156,10 @@ export default {
         toggleCreate(){
             this.$refs.create.show();
         },
+        openView(data)
+        {
+          this.$refs.view.show(data);
+        }
     }
 }
 </script>

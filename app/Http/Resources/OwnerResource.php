@@ -14,6 +14,21 @@ class OwnerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'firstname' => $this->firstname,
+            'middlename' => $this->middlename,
+            'lastname' => $this->lastname,
+            'gender' => $this->gender,
+            'civil_status' => $this->civil_status,
+            'contact_number' => $this->contact_number,
+            'email' => $this->email,
+            'address' => $this->address,
+            'birth_date' => $this->birth_date,
+            'birth_place' => $this->birth_place,
+            'occupation' => $this->occupation,
+            'lots' => BlockResource::collection($this->lots)
+        ];
     }
 }

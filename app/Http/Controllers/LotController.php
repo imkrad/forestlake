@@ -54,7 +54,6 @@ class LotController extends Controller
                     for ($i = 1; $i <= $lots; $i++) {
                         $data->lots()->create([
                             'lot' => $i,
-                            'max_count' => $block['max'],
                             'status_id' => 4
                         ]);
                     }
@@ -83,6 +82,7 @@ class LotController extends Controller
         $data = Lot::where('id',$request->id)->first();
         $data->area = $request->area;
         $data->price = $request->price;
+        $data->max_count = $request->max_count;
         $data->status_id = 1;
         $data->is_available = 1;
         if($data->save()){
