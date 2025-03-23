@@ -31,17 +31,21 @@
                 </BCol>
             </BRow>
             <BRow class="g-3 mt-n1" v-for="(block, index) in form.blocks" :key="index">
-                <BCol lg="4" class="mt-1">
+                <BCol lg="3" class="mt-1">
                     <InputLabel value="Block" :message="form.errors['blocks.'+index+'.block']"/>
                     <TextInput v-model="block.block" type="text" class="form-control" placeholder="Please enter block" @input="handleInput('block')" :light="true" />
                 </BCol>
-                <BCol lg="4" class="mt-1">
-                    <InputLabel value="Size" :message="form.errors['blocks.'+index+'.size']"/>
-                    <TextInput v-model="block.size" type="text" class="form-control" placeholder="Please enter size" @input="handleInput('block')" :light="true" />
+                <BCol lg="3" class="mt-1">
+                    <InputLabel value="Max Count" :message="form.errors['blocks.'+index+'.max']"/>
+                    <TextInput v-model="block.max" type="text" class="form-control" placeholder="Please enter count" @input="handleInput('max')" :light="true" />
                 </BCol>
-                <BCol lg="4" class="mt-1">
+                <BCol lg="3" class="mt-1">
+                    <InputLabel value="Size" :message="form.errors['blocks.'+index+'.size']"/>
+                    <TextInput v-model="block.size" type="text" class="form-control" placeholder="Please enter size" @input="handleInput('size')" :light="true" />
+                </BCol>
+                <BCol lg="3" class="mt-1">
                     <InputLabel value="Lots" :message="form.errors['blocks.'+index+'.lots']"/>
-                    <TextInput v-model="block.lots" type="text" class="form-control" placeholder="Please enter lots" @input="handleInput('block')" :light="true" />
+                    <TextInput v-model="block.lots" type="text" class="form-control" placeholder="Please enter lots" @input="handleInput('lots')" :light="true" />
                 </BCol>
             </BRow>
         </form>
@@ -68,7 +72,7 @@ export default {
                 section_id: null,
                 area_id: null,
                 phase_id: null,
-                blocks: [{ block: '', size: null, lots: null }],
+                blocks: [{ block: '', max: null, size: null, lots: null }],
             }),
             showModal: false,
             editable: false

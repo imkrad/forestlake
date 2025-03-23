@@ -163,6 +163,6 @@ import { router } from '@inertiajs/vue3';
 </script>
 <style>
 .auth-page-wrapper {
-    background-color: #272727;
+    background-color: #2D1E17;
 }
 </style>

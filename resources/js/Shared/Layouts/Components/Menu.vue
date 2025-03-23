@@ -30,10 +30,10 @@
                   <span class="fw-semibold fs-14" data-key="t-dashboards">Grave Management</span>
                 </Link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="$page.props.user.data.role == 'Administrator'">
                 <Link  href="/users" class="nav-link menu-link" :class="{'active': $page.component.startsWith('Users') }">
                   <i class="ri-account-circle-line"></i>
-                  <span class="fw-semibold fs-14" data-key="t-dashboards">User Management</span>
+                  <span class="fw-semibold fs-14" data-key="t-dashboards">User Management </span>
                 </Link>
               </li>
               <li class="nav-item">

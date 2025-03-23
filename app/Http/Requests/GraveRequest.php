@@ -29,6 +29,7 @@ class GraveRequest extends FormRequest
             'cause_of_death' => 'sometimes|required|string',
             'owner' => 'sometimes|required|string',
             'lot_id' => 'sometimes|required',
+            'type_id' => 'sometimes|required',
             'user_id' => 'sometimes|required|string',
         ];
     }

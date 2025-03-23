@@ -54,6 +54,7 @@ class LotController extends Controller
                     for ($i = 1; $i <= $lots; $i++) {
                         $data->lots()->create([
                             'lot' => $i,
+                            'max_count' => $block['max'],
                             'status_id' => 4
                         ]);
                     }
@@ -75,7 +76,8 @@ class LotController extends Controller
             'price' => [new NotZeroPeso],
             'area' => 'required',
             'longitude' => 'required',
-            'latitude' => 'required'
+            'latitude' => 'required',
+            'max_count' => 'required|integer'
         ]);
 
         $data = Lot::where('id',$request->id)->first();

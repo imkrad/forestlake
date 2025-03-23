@@ -50,10 +50,16 @@ class GraveController extends Controller
         $data->birth_date = $request->birth_date;
         $data->burial_date = $request->burial_date;
         $data->cause_of_death = $request->cause_of_death;
+        $data->type_id = $request->type_id;
         $data->lot_id = $request->lot_id;
         $data->user_id = Auth::user()->id;
         if($data->save()){
-            Lot::where('id',$request->lot_id)->update(['is_available' => 0, 'status_id' => 3]);
+            $lot = Lot::where('id',$request->lot_id)->first();
+            $count = $lot->deceaseds()->count();
+            $lot->is_available = 0;
+            $lot->status_id = ($lot->max_count <= $count) ? 3 : 1;
+            $lot->save();
+            // Lot::where('id',$request->lot_id)->update(['is_available' => 0, 'status_id' => 3]);
         }
         
         return back()->with([

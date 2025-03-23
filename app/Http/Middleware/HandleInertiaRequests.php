@@ -56,6 +56,12 @@ class HandleInertiaRequests extends Middleware
                     'value' => $item->id,
                     'name' => 'Section '.$item->name
                 ];
+            }),
+            'types' => ListDropdown::where('classification','Type')->get()->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'name' => $item->name
+                ];
             })
         ];
     }

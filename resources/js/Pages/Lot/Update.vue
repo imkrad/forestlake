@@ -25,6 +25,10 @@
                     <InputLabel value="Area" :message="form.errors.area"/>
                     <TextInput v-model="form.area" type="text" class="form-control" placeholder="Please enter area" @input="handleInput('area')" :light="true" />
                 </BCol>
+                <BCol lg="12" class="mt-1">
+                    <InputLabel value="Max Count Allowed (Bodies Buried)" :message="form.errors.max_count"/>
+                    <TextInput v-model="form.max_count" type="number" class="form-control" placeholder="Please enter count" @input="handleInput('max_count')" :light="true" />
+                </BCol>
                 <BCol lg="12" class="mt-0 mb-0">
                     <hr class="text-muted"/>
                 </BCol>
@@ -69,7 +73,8 @@ export default {
                 area: null,
                 price: null,
                 longitude: null,
-                latitude: null
+                latitude: null,
+                max_count: null
             }),
             selected: null,
             showModal: false

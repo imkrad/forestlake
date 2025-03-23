@@ -25,6 +25,9 @@ class WelcomeController extends Controller
             case 'lots2':
                 return $this->lots2($request->code);
             break;
+            case 'lots3':
+                return $this->lots3($request);
+            break;
             case 'owner':
                 return $this->owner($request->code);
             break;
@@ -73,7 +76,23 @@ class WelcomeController extends Controller
         ->where('status_id',1)->get()->map(function ($item) {
             return [
                 'value' => $item->id,
-                'name' => 'Lot '.$item->number.' - Block '.$item->block->number.' ('.$item->block->name.') - Section '.$item->block->section->name
+                'name' => 'Lot '.$item->lot.' - Block '.$item->block->block.' - Section '.$item->block->section->section->name.' - Area '.$item->block->section->area->name.' - '.$item->block->section->phase->name
+            ];
+        });
+        return $data;
+    }
+
+    private function lots3($request){
+        $code = $request->code;
+        $data = Lot::with('block.section.section','block.section.area','block.section.phase')
+        ->where('status_id',1)->where('is_available',1)->get()->map(function ($item) {
+            return [
+                'value' => $item->id,
+                'name' => 'Lot '.$item->lot,
+                'block' => $item->block->block,
+                'section' => $item->block->section->section->name,
+                'area'=> $item->block->section->area->name,
+                'phase'=> $item->block->section->phase->name
             ];
         });
         return $data;

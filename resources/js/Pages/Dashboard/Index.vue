@@ -2,7 +2,48 @@
     <Head title="Dashboard" />
     <div class="row">
         <div class="col-md-3">
-            
+            <div class="card">
+                <div class="card-body" style="height: calc(100vh - 223px); overflow: auto;">
+                    <div class="d-grid gap-2" >
+                        <button @click="openBuy" class="btn btn-primary" type="button">BUY LOT</button>
+                    </div>
+                    <hr class="text-muted">
+                    <ul class="list-group list-group-flush border-dashed mb-0">
+                        <li class="list-group-item px-0">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 avatar-xs">
+                                    <span class="avatar-title bg-light p-1 rounded-circle">
+                                        <i class="ri-checkbox-circle-fill fs-16 text-success"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <h6 class="mb-0 fs-12">Available Lots</h6>
+                                    <p class="fs-11 mb-0 text-muted">Lots currently for sale</p>
+                                </div>
+                                <div class="flex-shrink-0 text-end">
+                                    <h6 class="mt-2">{{lots.available}}</h6>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item px-0">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 avatar-xs">
+                                    <span class="avatar-title bg-light p-1 rounded-circle">
+                                        <i class="ri-close-circle-fill fs-16 text-danger"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <h6 class="mb-0 fs-12">Unavailable Lots</h6>
+                                    <p class="fs-11 mb-0 text-muted">Occupied or not for sale</p>
+                                </div>
+                                <div class="flex-shrink-0 text-end">
+                                    <h6 class="mt-2">{{lots.notavailable}}</h6>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="col-md-9">
             <div class="row g-3 h-100">
@@ -36,7 +77,7 @@
                         </div>
                         <div class="card-body" style="height: calc(100vh - 450px); overflow: auto;">
                             <div class="table-responsive table-card">
-                                <table class="table table-borderless table-hover table-nowrap align-middle mb-0">
+                                <table class="table table-hover table-nowrap align-middle mb-0">
                                     <thead class="table-light">
                                         <tr class="text-muted">
                                             <th style="width: 3%;">#</th>
@@ -84,16 +125,18 @@
             </div>
         </div>
     </div>
-    <Create :sections="sections" ref="create"/>
+    <Create :sections="sections" :types="types" ref="create"/>
+    <Buy :sections="sections" :phases="phases" :areas="areas" ref="buy"/>
 </template>
 <script>
 import _ from 'lodash';
 import Create from './Create.vue';
+import Buy from './Buy.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Create }, 
-    props: ['counts','sections'],
+    components: { Pagination, PageHeader, Create, Buy }, 
+    props: ['counts','sections','lots','phases','areas','types'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -135,6 +178,9 @@ export default {
         },
         openCreate(){
             this.$refs.create.show();
+        },
+        openBuy(){
+            this.$refs.buy.show();
         }
     }
 }

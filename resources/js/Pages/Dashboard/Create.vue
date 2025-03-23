@@ -25,9 +25,9 @@
                             <InputLabel for="name" value="Lot" :message="form.errors.lot_id"/>
                             <Multiselect v-model="form.lot_id" placeholder="Select by Lot" :close-on-select="true" label="name" :options="lots" />
                         </div>
-                        <div class="flex-shrink-0">
+                        <!-- <div class="flex-shrink-0">
                             <b-button @click="addLot()" :disabled="!form.owner" style="margin-top: 20px;" variant="light" class="waves-effect waves-light ms-1"><i class="ri-add-circle-fill"></i></b-button>
-                        </div>
+                        </div> -->
                     </div>
                 </BCol>
                 <BCol lg="12" class="mb-n2 mt-0">
@@ -37,17 +37,21 @@
                     <InputLabel for="name" value="Fullname" :message="form.errors.name"/>
                     <TextInput type="text" v-model="form.name" class="form-control" placeholder="Please enter name" @input="handleInput('name')" :light="true"/>
                 </BCol>
-                <BCol lg="4" class="mt-0">
+                <BCol lg="6" class="mt-0">
                     <InputLabel for="name" value="Birth Date" :message="form.errors.birth_date"/>
                     <TextInput type="date" v-model="form.birth_date" class="form-control" placeholder="Please enter date" @input="handleInput('birth_date')" :light="true"/>
                 </BCol>
-                <BCol lg="4" class="mt-0">
+                <BCol lg="6" class="mt-0">
                     <InputLabel for="name" value="Death Date" :message="form.errors.death_date"/>
                     <TextInput type="date" v-model="form.death_date" class="form-control" placeholder="Please enter date" @input="handleInput('death_date')" :light="true"/>
                 </BCol>
-                <BCol lg="4" class="mt-0">
+                <BCol lg="6" class="mt-0">
                     <InputLabel for="name" value="Burial Date" :message="form.errors.burial_date"/>
                     <TextInput type="date" v-model="form.burial_date" class="form-control" placeholder="Please enter date" @input="handleInput('burial_date')" :light="true"/>
+                </BCol>
+                <BCol lg="6" class="mt-0">
+                    <InputLabel for="name" value="Type" :message="form.errors.type_id"/>
+                    <Multiselect v-model="form.type_id"  placeholder="Select by Owner" :close-on-select="true" label="name" :options="types" />
                 </BCol>
                 <BCol lg="12" class="mt-0">
                     <InputLabel for="name" value="Cause of Death" :message="form.errors.cause_of_death"/>
@@ -73,7 +77,7 @@ import InputLabel from '@/Shared/Components/Forms/InputLabel.vue';
 import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 export default {
     components: { InputLabel, TextInput, Multiselect, Owner, Lot },
-    props: ['sections'],
+    props: ['sections','types'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -84,6 +88,7 @@ export default {
                 death_date: null,
                 burial_date: null,
                 cause_of_death: null,
+                type_id: null,
                 lot_id: null
             }),
             lots: [],

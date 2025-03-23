@@ -19,6 +19,8 @@ return new class extends Migration
             $table->date('death_date');
             $table->date('burial_date');
             $table->longText('cause_of_death'); 
+            $table->tinyInteger('type_id')->unsigned()->nullable();
+            $table->foreign('type_id')->references('id')->on('list_dropdowns')->onDelete('cascade');
             $table->integer('lot_id')->unsigned()->index();
             $table->foreign('lot_id')->references('id')->on('lots')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->index();

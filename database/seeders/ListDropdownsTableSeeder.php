@@ -198,6 +198,36 @@ class ListDropdownsTableSeeder extends Seeder
                 'others' => 'n/a',
                 'is_active' => 1,
             ),
+            18 => 
+            array (
+                'id' => 19,
+                'name' => 'Memorial Service',
+                'classification' => 'Type',
+                'type' => 'n/a',
+                'color' => 'n/a',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            19 => 
+            array (
+                'id' => 20,
+                'name' => 'Bone Transfer',
+                'classification' => 'Type',
+                'type' => 'n/a',
+                'color' => 'n/a',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            20 => 
+            array (
+                'id' => 21,
+                'name' => 'Exhumation',
+                'classification' => 'Type',
+                'type' => 'n/a',
+                'color' => 'n/a',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
         ));
 
         

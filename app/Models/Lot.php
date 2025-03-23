@@ -12,6 +12,7 @@ class Lot extends Model
     protected $fillable = [
         'lot',
         'price',
+        'max_count',
         'area',
         'is_active',
         'is_available',

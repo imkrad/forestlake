@@ -17,6 +17,7 @@ class LotResource extends JsonResource
         return [
             'id' => $this->id,
             'lot' => $this->lot, 
+            'max_count' => $this->max_count,
             'price' => $this->price, 
             'area' => ($this->area) ? $this->area : '-', 
             'is_available' => $this->is_available, 

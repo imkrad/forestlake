@@ -16,6 +16,7 @@ class Deceased extends Model
         'burial_date',
         'lot_id',
         'cause_of_death',
+        'type_id',
         'user_id'
     ];
 
@@ -27,6 +28,11 @@ class Deceased extends Model
     public function lot()
     {
         return $this->belongsTo('App\Models\Lot', 'lot_id', 'id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Models\ListDropdown', 'type_id', 'id');
     }
 
     public function user()

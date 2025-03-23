@@ -15,9 +15,10 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('lot');
+            $table->integer('max_count');
             $table->decimal('price',12,2)->default(0);
             $table->string('area')->nullable();
-            $table->boolean('is_available')->default(1);
+            $table->boolean('is_available')->default(0);
             $table->boolean('is_active')->default(1);
             $table->tinyInteger('status_id')->unsigned()->index();
             $table->foreign('status_id')->references('id')->on('list_statuses')->onDelete('cascade');

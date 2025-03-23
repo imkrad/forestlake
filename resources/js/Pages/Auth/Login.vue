@@ -49,7 +49,7 @@
                                         </div> -->
 
                                         <div class="mt-4">
-                                            <BButton variant="dark" class="w-100" type="submit" :disabled="form.processing">Log In</BButton>
+                                            <BButton variant="primary" class="w-100" type="submit" :disabled="form.processing">Log In</BButton>
                                         </div>
 
                                         <!-- <div class="mt-4 fs-10 text-center">
