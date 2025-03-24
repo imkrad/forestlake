@@ -212,12 +212,12 @@
     "src": "public/images/sidebar/img-4.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DqSHLgQz.js",
+    "file": "assets/app-D8fpU7Lg.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-CGoiiJQ2.css"
+      "assets/app-8oGPAxb-.css"
     ],
     "assets": [
       "assets/logo-sm-dark-qZ7Jmt-1.png",

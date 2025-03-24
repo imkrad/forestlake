@@ -95,7 +95,6 @@ export default {
                 preserveScroll: true,
                 onSuccess: (response) => {
                     this.$emit('update',response.props.flash.data.data);
-                    this.form.reset();
                     this.hide();
                 }
             });
@@ -104,7 +103,8 @@ export default {
             this.form.errors[field] = false;
         },
         hide(){
-            this.form.reset();
+            this.form.reset();         
+            this.$refs.testing.empty();
             this.editable = false;
             this.showModal = false;
         },

@@ -117,7 +117,7 @@
         </BCard>
       </BCol>
     </BRow>
-    <Create :phases="phases" :areas="areas" :sections="sections" ref="create"/>
+    <Create @update="fetch" :phases="phases" :areas="areas" :sections="sections" ref="create"/>
     <Update @update="set" ref="update"/>
 </template>
 <script>

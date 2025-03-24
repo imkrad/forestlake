@@ -102,12 +102,13 @@
 </template>
 <script>
 import _ from 'lodash';
+import simplebar from "simplebar-vue";
 import { useForm } from '@inertiajs/vue3';
 import Multiselect from "@vueform/multiselect";
 import InputLabel from '@/Shared/Components/Forms/InputLabel.vue';
 import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 export default {
-    components: { InputLabel, TextInput, Multiselect },
+    components: { InputLabel, TextInput, Multiselect, simplebar },
     props: ['sections','phases','areas'],
     data(){
         return {
