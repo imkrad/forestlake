@@ -33,7 +33,8 @@ class GraveController extends Controller
     private function lists($request){
         $data = DeceasedResource::collection(
             Deceased::query()
-            ->with('lot.owner.owner')
+            ->with('lot.owner.owner','lot.block.section.section','lot.block.section.area','lot.block.section.phase','lot.coordinate','lot.status')
+            ->with('type')
             ->when($request->keyword, function ($query, $keyword) {
                 $query->where('name', 'LIKE', "%{$keyword}%");
             })

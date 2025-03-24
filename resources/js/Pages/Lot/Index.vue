@@ -119,9 +119,11 @@
     </BRow>
     <Create @update="fetch" :phases="phases" :areas="areas" :sections="sections" ref="create"/>
     <Update @update="set" ref="update"/>
+    <View ref="view"/>
 </template>
 <script>
 import _ from 'lodash';
+import View from './View.vue';
 import Create from './Create.vue';
 import Update from './Update.vue';
 import simplebar from "simplebar-vue";
@@ -129,7 +131,7 @@ import Multiselect from "@vueform/multiselect";
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Multiselect, Create, simplebar, Update }, 
+    components: { Pagination, PageHeader, Multiselect, Create, simplebar, Update, View }, 
     props: ['lot_statuses','phases','areas','sections'],
     data(){
         return {
@@ -201,6 +203,9 @@ export default {
         },
         set(data){
           this.lists[this.index] = data;
+        },
+        openView(data){
+          this.$refs.view.show(data);
         }
     }
 }

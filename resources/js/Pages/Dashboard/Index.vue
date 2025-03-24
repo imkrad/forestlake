@@ -125,17 +125,19 @@
             </div>
         </div>
     </div>
+    <View ref="view"/>
     <Create :sections="sections" :types="types" ref="create"/>
     <Buy :sections="sections" :phases="phases" :areas="areas" ref="buy"/>
 </template>
 <script>
 import _ from 'lodash';
+import View from './View.vue';
 import Create from './Create.vue';
 import Buy from './Buy.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Create, Buy }, 
+    components: { Pagination, PageHeader, Create, Buy, View }, 
     props: ['counts','sections','lots','phases','areas','types'],
     data(){
         return {
@@ -181,6 +183,9 @@ export default {
         },
         openBuy(){
             this.$refs.buy.show();
+        },
+        openView(data){
+            this.$refs.view.show(data);
         }
     }
 }

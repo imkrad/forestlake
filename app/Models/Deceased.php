@@ -39,4 +39,19 @@ class Deceased extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function getBirthDateAttribute($value)
+    {
+        return date('F d, Y', strtotime($value));
+    }
+
+    public function getDeathDateAttribute($value)
+    {
+        return date('F d, Y', strtotime($value));
+    }
+
+    public function getBurialDateAttribute($value)
+    {
+        return date('F d, Y', strtotime($value));
+    }
 }
