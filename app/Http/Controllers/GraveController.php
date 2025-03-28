@@ -70,4 +70,23 @@ class GraveController extends Controller
             'status' => true
         ]);
     }
+
+    public function update(Request $request){
+        
+        $data = Deceased::where('id',$request->id)->first();
+        $data->name = $request->name;
+        $data->death_date = $request->death_date;
+        $data->birth_date = $request->birth_date;
+        $data->burial_date = $request->burial_date;
+        $data->cause_of_death = $request->cause_of_death;
+        $data->type_id = $request->type_id;
+        $data->save();
+        
+        return back()->with([
+            'data' =>  $data,
+            'message' => 'Grave was updated!', 
+            'info' => "You've successfully updated the grave.",
+            'status' => true
+        ]);
+    }
 }

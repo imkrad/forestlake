@@ -105,12 +105,12 @@
                                             <td class="text-center fs-12">{{list.death_date}}</td>
                                             <td class="text-center fs-12">{{list.burial_date}}</td>
                                             <td class="text-end">
-                                                <b-button @click="openView(list)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                                                <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                                     <i class="ri-eye-fill align-bottom"></i>
                                                 </b-button>
-                                                <b-button @click="openEdit(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
+                                                <!-- <b-button @click="openEdit(list,index)" variant="warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                                     <i class="ri-pencil-fill align-bottom"></i>
-                                                </b-button>
+                                                </b-button> -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -126,7 +126,7 @@
         </div>
     </div>
     <View ref="view"/>
-    <Create :sections="sections" :types="types" ref="create"/>
+    <Create @update="fetch()" :sections="sections" :types="types" ref="create"/>
     <Buy :sections="sections" :phases="phases" :areas="areas" ref="buy"/>
 </template>
 <script>

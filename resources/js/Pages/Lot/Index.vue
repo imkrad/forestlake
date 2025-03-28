@@ -24,7 +24,7 @@
                 <BCol xxl="3" sm="12">
                   <div class="search-box">
                     <input type="text" class="form-control search bg-light border-light"
-                      placeholder="Search a lot" v-model="searchQuery" />
+                      placeholder="Search a lot" v-model="keyword" />
                     <i class="ri-search-line search-icon"></i>
                   </div>
                 </BCol>
@@ -88,10 +88,10 @@
                             <span :class="'badge '+list.status.color">{{list.status.name}}</span>
                         </td>
                         <td class="text-end">
-                            <b-button @click="openView(list)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                            <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
-                            <b-button v-if="list.status.id == 4" @click="toggleUpdate(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
+                            <b-button v-if="list.status.id == 4" @click="toggleUpdate(list,index)" variant="warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                 <i class="ri-pencil-fill align-bottom"></i>
                             </b-button>
                         </td>
@@ -117,7 +117,7 @@
         </BCard>
       </BCol>
     </BRow>
-    <Create @update="fetch" :phases="phases" :areas="areas" :sections="sections" ref="create"/>
+    <Create @update="fetch()" :phases="phases" :areas="areas" :sections="sections" ref="create"/>
     <Update @update="set" ref="update"/>
     <View ref="view"/>
 </template>

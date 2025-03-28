@@ -60,13 +60,9 @@ class UserController extends Controller
     public function update(Request $request){
         $data = User::with('profile')->where('id',$request->id)->first();
         $data->email = $request->email;
-        $data->role = $request->role;
         if($data->save()){
-
             $profile = UserProfile::where('user_id',$request->id)->first();
-            $profile->firstname = $request->firstname;
-            $profile->lastname = $request->lastname;
-            $profile->middlename = $request->middlename;
+            $profile->name = $request->name;
             $profile->gender = $request->gender;
             $profile->mobile = $request->mobile;
             $profile->save();

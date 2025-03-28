@@ -50,8 +50,8 @@
                     <th class="text-center">Gender</th>
                     <th class="text-center">Contact</th>
                     <th class="text-center">Email</th>
+                    <th class="text-center">Birth Date</th>
                     <th class="text-center">Lots Owned</th>
-                    <th class="text-center">Status</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -66,16 +66,13 @@
                         <td class="text-center fs-12">{{list.gender}}</td>
                         <td class="text-center fs-12">{{list.contact_number}}</td>
                         <td class="text-center fs-12">{{list.email}}</td>
+                        <td class="text-center fs-12">{{list.birth_date}}</td>
                         <td class="text-center fs-12">{{list.lots.length}}</td>
-                        <td class="text-center">
-                            <i v-if="list.is_active" class="ri-checkbox-circle-fill text-success fs-18"></i>
-                            <i v-else class="ri-close-circle-fill text-danger fs-18"></i>
-                        </td>
                         <td class="text-end">
-                            <b-button @click="openView(list)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                            <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
-                            <b-button @click="openEdit(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
+                            <b-button @click="openEdit(list,index)" variant="warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                 <i class="ri-pencil-fill align-bottom"></i>
                             </b-button>
                         </td>
@@ -126,8 +123,8 @@ export default {
         }
     },
     watch: {
-        "filter.keyword"(newVal){
-            this.checkSearchStr(newVal)
+        "keyword"(newVal){
+            this.fetch();
         }
     },
     created(){

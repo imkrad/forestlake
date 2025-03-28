@@ -27,6 +27,7 @@
                         <th class="text-center">Area</th>
                         <th class="text-center">Phase</th>
                         <th class="text-center">Occupied</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="list form-check-all">
@@ -37,6 +38,11 @@
                         <td class="text-center">{{ list.lot.area }}</td>
                         <td class="text-center">{{ list.lot.phase }}</td>
                         <td class="text-center">{{list.lot.deceaseds.length}} / {{ list.lot.max_count }}</td>
+                        <td class="text-end">
+                            <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                                <i class="ri-eye-fill align-bottom"></i>
+                            </b-button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -45,9 +51,12 @@
             <b-button @click="hide()" variant="light" block>Close</b-button>
         </template>
     </b-modal>
+    <Show ref="view"/>
 </template>
 <script>
+import Show from './Show.vue';
 export default {
+    components: { Show },
     data(){
         return {
             currentUrl: window.location.origin,
@@ -59,6 +68,9 @@ export default {
         show(data){
             this.selected = data;
             this.showModal = true;
+        },
+        openView(data){
+          this.$refs.view.show(data);
         },
         hide(){
             this.showModal = false;

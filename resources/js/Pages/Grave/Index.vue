@@ -69,10 +69,10 @@
                         <td class="text-center fs-12">{{list.burial_date}}</td>
                         <td class="text-center fs-12">{{list.lot.number}}</td>
                         <td class="text-end">
-                            <b-button @click="openView(list)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                            <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
-                            <b-button @click="openEdit(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
+                            <b-button @click="openEdit(list,index)" variant="warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                 <i class="ri-pencil-fill align-bottom"></i>
                             </b-button>
                         </td>
@@ -99,17 +99,21 @@
       </BCol>
     </BRow>
     <Create :sections="sections" @update="fetch()" ref="create"/>
+    <Edit :types="types" ref="edit"/>
+    <View ref="view"/>
 </template>
 <script>
 import _ from 'lodash';
+import View from './View.vue';
+import Edit from './Edit.vue';
 import Create from './Create.vue';
 import simplebar from "simplebar-vue";
 import Multiselect from "@vueform/multiselect";
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Multiselect, simplebar, Create }, 
-    props: ['sections'],
+    components: { Pagination, PageHeader, Multiselect, simplebar, Create, Edit, View }, 
+    props: ['sections','types'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -152,6 +156,13 @@ export default {
         toggleCreate(){
             this.$refs.create.show();
         },
+        openEdit(data){
+          this.$refs.edit.show(data);
+        },
+        openView(data)
+        {
+          this.$refs.view.show(data);
+        }
     }
 }
 </script>

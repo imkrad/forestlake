@@ -31,7 +31,17 @@ class LotController extends Controller
             ->when($request->status, function ($query, $status) {
                 $query->where('status_id',$status);
             })
-            ->orderBy('created_at','DESC')
+            ->whereHas('block', function ($query) {
+                $query->whereHas('section', function ($query) {
+                    $query->orderBy('section_id','ASC');
+                    $query->whereHas('section', function ($query) {
+                        $query->orderBy('phase_id','ASC');
+                        $query->orderBy('area_id','ASC');
+                    });
+                });
+            })
+            ->orderBy('block_id','ASC')
+            // ->orderBy('created_at','DESC')
             ->paginate($request->count);
 
         return LotResource::collection($data);

@@ -1,5 +1,5 @@
 <template>
-    <b-modal v-model="showModal" header-class="p-3 bg-dark-subtle" title="Update Lot" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
+    <b-modal v-model="showModal" style="--vz-modal-width: 700px;" header-class="p-3 bg-dark-subtle" title="Update Lot" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
         <form class="customform" v-if="selected">
             <BRow class="g-3 mt-1">
                 <BCol lg="12">
@@ -17,28 +17,38 @@
                 </BCol>
             </BRow>
             <BRow class="g-3 mt-n1">
-                <BCol lg="6" class="mt-1">
+                <BCol lg="3" class="mt-1">
                     <InputLabel value="Price" :message="form.errors.price"/>
                     <Amount @amount="amount" ref="testing" :readonly="false" @input="handleInput('amount')"/>
                 </BCol>
-                <BCol lg="6" class="mt-1">
+                <BCol lg="3" class="mt-1">
                     <InputLabel value="Area" :message="form.errors.area"/>
                     <TextInput v-model="form.area" type="text" class="form-control" placeholder="Please enter area" @input="handleInput('area')" :light="true" />
                 </BCol>
-                <BCol lg="12" class="mt-1">
+                <BCol lg="6" class="mt-1">
                     <InputLabel value="Max Count Allowed (Bodies Buried)" :message="form.errors.max_count"/>
                     <TextInput v-model="form.max_count" type="number" class="form-control" placeholder="Please enter count" @input="handleInput('max_count')" :light="true" />
                 </BCol>
                 <BCol lg="12" class="mt-0 mb-0">
                     <hr class="text-muted"/>
                 </BCol>
-                <BCol lg="6" class="mt-n2">
+                <!-- <BCol lg="6" class="mt-n2">
                     <InputLabel value="Longitude" :message="form.errors.longitude"/>
                     <TextInput v-model="form.longitude" type="text" class="form-control" placeholder="Please enter longitude" @input="handleInput('longitude')" :light="true" />
                 </BCol>
                 <BCol lg="6" class="mt-n2">
                     <InputLabel value="Latitude" :message="form.errors.latitude"/>
                     <TextInput v-model="form.latitude" type="text" class="form-control" placeholder="Please enter latitude" @input="handleInput('latitude')" :light="true" />
+                </BCol> -->
+                <BCol lg="12" class="mt-0">
+                    <l-map ref="mymap" style="width: 100%; height: 400px; border-radius: 10px;" 
+                        :zoom="zoom"
+                        :center="center"
+                        :options="mapOptions"
+                        @click="setMarker">
+                        <l-marker v-if="markerLatLng" :lat-lng="markerLatLng"></l-marker>
+                        <l-tile-layer :url="url" :attribution="attribution" />
+                    </l-map>
                 </BCol>
             </BRow>
         </form>
@@ -49,6 +59,8 @@
     </b-modal>
 </template>
 <script>
+import { latLng } from "leaflet";
+import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "@vue-leaflet/vue-leaflet";
 import _ from 'lodash';
 import { useForm } from '@inertiajs/vue3';
 import {VMoney} from 'v-money';
@@ -56,7 +68,7 @@ import Amount from '@/Shared/Components/Forms/Amount.vue';
 import InputLabel from '@/Shared/Components/Forms/InputLabel.vue';
 import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 export default {
-    components: { InputLabel, TextInput, Amount },
+    components: { InputLabel, TextInput, Amount, LMap, LTileLayer, LMarker, LIcon, LTooltip },
     directives: {money: VMoney},
     data(){
         return {
@@ -77,7 +89,16 @@ export default {
                 max_count: null
             }),
             selected: null,
-            showModal: false
+            showModal: false,
+            zoom: 18,
+            center: latLng(6.9402912456685435, 122.08175137179076),
+            url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            mapOptions: {
+                zoomSnap: 0.5,
+            },
+            coordinates: {},
+            markerLatLng: null
         }
     },
     methods: {
@@ -115,6 +136,25 @@ export default {
                 area: null, 
                 lots: null
             });
+        },
+        setMarker(event){
+            this.coordinates = {
+                lng: parseFloat(event.latlng.lng.toFixed(6)),
+                lat: parseFloat(event.latlng.lat.toFixed(6))
+            };
+            // this.$emit('set',this.coordinates);
+            this.markerLatLng = this.coordinates;
+            this.form.longitude = this.coordinates.lng;
+            this.form.latitude = this.coordinates.lat;
+            // this.$refs.mymap.leafletObject.flyTo(this.coordinates, 15, {
+            //     animate: true,
+            //     duration: 1.0
+            // });
+        },
+        view(){
+            setTimeout(() => {
+                this.$refs.mymap.leafletObject.invalidateSize(); 
+            }, 100);
         },
     }
 }

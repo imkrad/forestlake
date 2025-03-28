@@ -66,7 +66,17 @@ export default {
     },
     methods: { 
         show(){
+            this.editable = false;
             this.form.reset();
+            this.showModal = true;
+        },
+        edit(data){
+            this.form.id = data.id;
+            this.form.name = data.name;
+            this.form.gender = data.gender;
+            this.form.email = data.email;
+            this.form.mobile = data.mobile;
+            this.editable = true;
             this.showModal = true;
         },
         submit(){

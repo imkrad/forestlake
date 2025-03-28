@@ -51,7 +51,7 @@
                 </BCol>
                 <BCol lg="6" class="mt-0">
                     <InputLabel for="name" value="Type" :message="form.errors.type_id"/>
-                    <Multiselect v-model="form.type_id"  placeholder="Select by Owner" :close-on-select="true" label="name" :options="types" />
+                    <Multiselect v-model="form.type_id"  placeholder="Select type" :close-on-select="true" label="name" :options="types" />
                 </BCol>
                 <BCol lg="12" class="mt-0">
                     <InputLabel for="name" value="Cause of Death" :message="form.errors.cause_of_death"/>

@@ -23,7 +23,8 @@ class OwnerController extends Controller
     private function lists($request){
         $data = Owner::with('lots.lot.block.section.area','lots.lot.block.section.phase','lots.lot.deceaseds')
             ->when($request->keyword, function ($query, $keyword) {
-                $query->where('name','LIKE', "%{$keyword}%");
+                $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$keyword}%")
+                    ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$keyword}%");
             })
             ->orderBy('created_at','DESC')
             ->paginate($request->count);
