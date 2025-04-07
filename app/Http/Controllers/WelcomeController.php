@@ -29,16 +29,22 @@ class WelcomeController extends Controller
                 return $this->lots3($request);
             break;
             case 'owner':
-                return $this->owner($request->code);
+                return $this->owner($request->code,$request->id);
             break;
         }
     }
 
-    private function owner($code){
+    private function owner($code,$id){
+        $id = (int) $id;
         $data = Owner::when($code, function ($query, $keyword) {
             $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$keyword}%")
                     ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$keyword}%");
-        })->take(5)->get()->map(function ($item) {
+        })
+        ->take(5)->get()
+        ->filter(function ($item) use ($id) {
+            return $item->id != $id;
+        })
+        ->map(function ($item) {
             return [
                 'value' => $item->id,
                 'name' => $item->firstname.' '.$item->lastname

@@ -17,6 +17,8 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::resource('/graves', App\Http\Controllers\GraveController::class);
     Route::resource('/owners', App\Http\Controllers\OwnerController::class);
     Route::resource('/reports', App\Http\Controllers\ReportController::class);
+
+    Route::post('/sell', [App\Http\Controllers\OwnerController::class, 'sell']);
     
 });
 require __DIR__.'/auth.php';

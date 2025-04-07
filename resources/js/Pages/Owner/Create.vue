@@ -26,7 +26,7 @@
                 </BCol>
                 <BCol lg="6" class="mt-0">
                     <InputLabel for="name" value="Contact Number" :message="form.errors.contact_number"/>
-                    <TextInput type="text" v-model="form.contact_number" class="form-control" placeholder="Input contact number" @input="handleInput('contact_number')" :light="true"/>
+                    <TextInput type="text" v-maska data-maska="###########" v-model="form.contact_number" class="form-control" placeholder="Input contact number" @input="handleInput('contact_number')" :light="true"/>
                 </BCol>
                 <BCol lg="6" class="mt-0">
                     <InputLabel for="name" value="Birth Date" :message="form.errors.email"/>
@@ -77,10 +77,12 @@
 import _ from 'lodash';
 import { useForm } from '@inertiajs/vue3';
 import Multiselect from "@vueform/multiselect";
+import { vMaska } from "maska";
 import InputLabel from '@/Shared/Components/Forms/InputLabel.vue';
 import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 export default {
     components: { InputLabel, TextInput, Multiselect },
+    directives: { maska: vMaska },
     data(){
         return {
             currentUrl: window.location.origin,

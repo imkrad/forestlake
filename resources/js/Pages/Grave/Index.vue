@@ -21,7 +21,7 @@
           <BCardBody class="border border-dashed border-end-0 border-start-0">
             <BFrom>
               <BRow class="g-3">
-                <BCol xxl="10" sm="12">
+                <BCol xxl="8" sm="12">
                   <div class="search-box">
                     <input type="text" class="form-control search bg-light border-light"
                       placeholder="Search owner name" v-model="keyword" />
@@ -29,6 +29,10 @@
                   </div>
                 </BCol>
 
+                <BCol xxl="2" sm="4">
+                  <input type="date" class="form-control search bg-light border-light"
+                  placeholder="Search owner name" v-model="death" />
+                </BCol>
                 
                 <BCol xxl="2" sm="4">
                     <div class="d-grid gap-2" >
@@ -47,12 +51,11 @@
               <table class="table align-middle table-nowrap mb-0">
                 <thead class="table-light text-muted thead-fixed">
                   <tr>
-                    <th></th>
-                    <th style="width: 30%;">Name</th>
+                    <th style="width: 5%;"></th>
+                    <th>Name</th>
                     <th style="width: 15%;" class="text-center">Birth Date</th>
                     <th style="width: 15%;" class="text-center">Death Date</th>
                     <th style="width: 15%;" class="text-center">Burial Date</th>
-                    <th style="width: 15%;" class="text-center">Lot</th>
                     <th style="width: 7%;" ></th>
                   </tr>
                 </thead>
@@ -63,11 +66,11 @@
                         </td>
                         <td>
                             <h5 class="fs-13 mb-0 text-dark">{{list.name}}</h5>
+                            <p class="fs-12 text-muted mb-0">Lot {{ list.lot.lot }} - Block {{ list.lot.block.block }} - Section {{ list.lot.block.section.section.name }} - Area {{list.lot.block.section.area.name }} - {{ list.lot.block.section.phase.name }}</p>
                         </td>
                         <td class="text-center fs-12">{{list.birth_date}}</td>
                         <td class="text-center fs-12">{{list.death_date}}</td>
                         <td class="text-center fs-12">{{list.burial_date}}</td>
-                        <td class="text-center fs-12">{{list.lot.number}}</td>
                         <td class="text-end">
                             <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
@@ -122,24 +125,32 @@ export default {
             links: {},
             index: null,
             keyword: null,
+            death: null,
             index: null,
         }
     },
     watch: {
-        "filter.keyword"(newVal){
+        "keyword"(newVal){
             this.checkSearchStr(newVal)
+        },
+        "death"(newVal){
+            this.fetch();
         }
     },
     created(){
         this.fetch();
     },
     methods: {
+        checkSearchStr: _.debounce(function(string) {
+            this.fetch();
+        }, 300),
         fetch(page_url){
             page_url = page_url || '/graves';
             axios.get(page_url,{
                 params : {
                     keyword: this.keyword,
                     status: this.status,
+                    death: this.death,
                     count: 10,
                     option: 'lists'
                 }

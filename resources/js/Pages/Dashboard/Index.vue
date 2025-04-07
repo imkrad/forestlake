@@ -81,8 +81,8 @@
                                     <thead class="table-light">
                                         <tr class="text-muted">
                                             <th style="width: 3%;">#</th>
-                                            <th class="text-center" style="width: 20%;">Owner</th>
-                                            <th class="text-center" style="width: 20%;">Deceased</th>
+                                            <th class="text-center" style="width: 20%;">Owner Name</th>
+                                            <th class="text-center" style="width: 20%;">Deceased Name</th>
                                             <th class="text-center" style="width: 15%;">Lot</th>
                                             <th class="text-center" style="width: 15%;">Death Date</th>
                                             <th class="text-center" style="width: 15%;">Buried Date</th>
@@ -98,9 +98,9 @@
                                                 {{ (meta.current_page - 1) * meta.per_page + index + 1 }}.
                                             </td>
                                             <td class="text-center">
-                                                <h5 class="fs-13 mb-0 text-dark">{{list.lot.owner.owner.firstname}} {{list.lot.owner.owner.lastname}}</h5>
+                                                <h5 class="fs-13 mb-0 fw-semibold text-dark">{{list.lot.owner.owner.firstname}} {{list.lot.owner.owner.lastname}}</h5>
                                             </td>
-                                            <td class="text-center fs-12">{{list.name}}</td>
+                                            <td class="text-center fw-semibold text-danger fs-12">{{list.name}}</td>
                                             <td class="text-center fs-12">{{list.lot.number}}</td>
                                             <td class="text-center fs-12">{{list.death_date}}</td>
                                             <td class="text-center fs-12">{{list.burial_date}}</td>

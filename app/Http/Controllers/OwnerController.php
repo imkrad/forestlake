@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
+use App\Models\OwnerLot;
 use App\Http\Resources\OwnerResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,23 @@ class OwnerController extends Controller
             'data' => $owner,
             'message' => 'Owner was created!', 
             'info' => "You've successfully created new owner.",
+            'status' => true
+        ]);
+    }
+
+    public function sell(Request $request){
+        $lot_id = $request->lot_id;
+        $owner_id = $request->owner_id;
+       
+        $data = OwnerLot::where('lot_id',$lot_id)->first();
+        $data->owner_id = $owner_id;
+        $data->save();
+        
+    
+        return back()->with([
+            'data' => $data,
+            'message' => 'Lot was sold!', 
+            'info' => "You've successfully updated the lot owner.",
             'status' => true
         ]);
     }

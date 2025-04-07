@@ -99,7 +99,7 @@
       </BCol>
     </BRow>
     <Create @update="fetch()" ref="create"/>
-    <View ref="view"/>
+    <View @update="fetch()" ref="view"/>
 </template>
 <script>
 import _ from 'lodash';

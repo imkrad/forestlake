@@ -38,6 +38,9 @@ class GraveController extends Controller
             ->when($request->keyword, function ($query, $keyword) {
                 $query->where('name', 'LIKE', "%{$keyword}%");
             })
+            ->when($request->death, function ($query, $date) {
+                $query->where('death_date',$date);
+            })
             ->orderBy('created_at','DESC')
             ->paginate($request->count)
         );

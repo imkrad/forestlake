@@ -6,13 +6,13 @@
                 <div class="flex-grow-1">
                     <h4>Lot {{selected.lot.lot}}</h4>
                     <div class="hstack gap-3 flex-wrap">
-                        <div class="text-muted">Block : <span class="text-body fw-medium">{{selected.lot.lot.block}}</span></div>
+                        <div class="text-muted">Block : <span class="text-body fw-medium">{{selected.lot.block.block}}</span></div>
                         <div class="vr"></div>
-                        <div class="text-muted">Section : <span class="text-body fw-medium">{{selected.lot.lot.section}}</span></div>
+                        <div class="text-muted">Section : <span class="text-body fw-medium">{{selected.lot.block.section.section.name}}</span></div>
                         <div class="vr"></div>
-                        <div class="text-muted">Area : <span class="text-body fw-medium">{{selected.lot.lot.area}}</span></div>
+                        <div class="text-muted">Area : <span class="text-body fw-medium">{{selected.lot.block.section.area.name}}</span></div>
                         <div class="vr"></div>
-                        <div class="text-muted">Phase : <span class="text-body fw-medium">{{selected.lot.lot.phase}}</span></div>
+                        <div class="text-muted">Phase : <span class="text-body fw-medium">{{selected.lot.block.section.phase.name}}</span></div>
                     </div>
                 </div>
                 <div class="flex-shrink-0">

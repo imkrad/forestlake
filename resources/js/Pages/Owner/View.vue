@@ -42,6 +42,9 @@
                             <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
+                            <b-button @click="openSell(list)" variant="danger" class="me-1" v-b-tooltip.hover title="Sell" size="sm">
+                                <i class="ri-hand-coin-fill align-bottom"></i>
+                            </b-button>
                         </td>
                     </tr>
                 </tbody>
@@ -52,11 +55,13 @@
         </template>
     </b-modal>
     <Show ref="view"/>
+    <Sell @update="hide" ref="sell"/>
 </template>
 <script>
+import Sell from './Sell.vue';
 import Show from './Show.vue';
 export default {
-    components: { Show },
+    components: { Show, Sell },
     data(){
         return {
             currentUrl: window.location.origin,
@@ -72,7 +77,11 @@ export default {
         openView(data){
           this.$refs.view.show(data);
         },
+        openSell(data){
+          this.$refs.sell.show(data,this.selected.id);
+        },
         hide(){
+            this.$emit('update',true);
             this.showModal = false;
         }
     }
