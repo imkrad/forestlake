@@ -241,7 +241,7 @@
     "src": "public/images/sidebar/img-4.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-C7yrnzEQ.js",
+    "file": "assets/app-DSztnew_.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -255,10 +255,11 @@
       "node_modules/leaflet/dist/leaflet-src.esm.js",
       "node_modules/leaflet/dist/leaflet-src.esm.js",
       "node_modules/leaflet/dist/leaflet-src.esm.js",
+      "node_modules/leaflet/dist/leaflet-src.esm.js",
       "node_modules/leaflet/dist/leaflet-src.esm.js"
     ],
     "css": [
-      "assets/app-3k7qjh1c.css"
+      "assets/app-BSWVWe3J.css"
     ],
     "assets": [
       "assets/logo-sm-dark-qZ7Jmt-1.png",

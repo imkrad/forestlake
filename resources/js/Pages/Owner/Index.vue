@@ -156,6 +156,11 @@ export default {
         openView(data)
         {
           this.$refs.view.show(data);
+        },
+        openEdit(data,index)
+        {
+          this.index = index;
+          this.$refs.create.edit(data);
         }
     }
 }

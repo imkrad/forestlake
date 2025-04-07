@@ -64,6 +64,24 @@ class OwnerController extends Controller
         ]);
     }
 
+    public function update(OwnerRequest $request){
+        $data = Owner::where('id',$request->id)->first();
+        $data->update($request->all());
+        
+        $owned = Owner::findOrFail($data->id);
+        $owner = [
+            'value' => $owned->id,
+            'name' => $owned->name
+        ];
+
+        return back()->with([
+            'data' => $owner,
+            'message' => 'Owner was updated!', 
+            'info' => "You've successfully updated owner details.",
+            'status' => true
+        ]);
+    }
+
     public function sell(Request $request){
         $lot_id = $request->lot_id;
         $owner_id = $request->owner_id;

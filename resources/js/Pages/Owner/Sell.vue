@@ -30,7 +30,7 @@
                         <div class="d-flex">
                             <div style="width: 100%;">
                                 <InputLabel value="Owner" :message="form.errors.owner"/>
-                                <Multiselect v-model="form.owner_id" @search-change="fetchOwner" placeholder="Select by Owner" :searchable="true" :close-on-select="true" label="name" :options="owners" />
+                                <Multiselect v-model="form.owner_id" @search-change="fetchOwner" placeholder="Select by Owner" object :searchable="true" :close-on-select="true" label="name" :options="owners" />
                             </div>
                             <div class="flex-shrink-0">
                                 <b-button @click="addOwner()" variant="light" class="waves-effect waves-light ms-1"><i class="ri-add-circle-fill"></i></b-button>
@@ -74,17 +74,21 @@ export default {
             this.showModal = true;
         },
         fetchOwner(code){
-            axios.get('/search',{
-                params: {
-                    option: 'owner',
-                    id: this.id,
-                    code: code
-                }
-            })
-            .then(response => {
-                this.owners = response.data;
-            })
-            .catch(err => console.log(err));
+            if(code != null){
+                axios.get('/search',{
+                    params: {
+                        option: 'owner',
+                        id: this.id,
+                        code: code
+                    }
+                })
+                .then(response => {
+                    this.owners = response.data;
+                })
+                .catch(err => console.log(err));
+            }else{
+                this.owners = [];
+            }
         },
         submit(){
             this.form.post('/sell',{

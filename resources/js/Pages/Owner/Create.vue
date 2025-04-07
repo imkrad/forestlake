@@ -1,6 +1,6 @@
 <template>
     <!-- style="--vz-modal-width: 800px;" -->
-    <b-modal v-model="showModal" style="--vz-modal-width: 850px;" header-class="p-3 bg-dark-subtle" title="Create Owner" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
+    <b-modal v-model="showModal" style="--vz-modal-width: 850px;" header-class="p-3 bg-dark-subtle" :title="(editable) ? 'Create Owner' : 'Edit Owner'" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
         <form class="customform">
             <BRow class="g-3 mt-2">
                 
@@ -108,6 +108,23 @@ export default {
     methods: { 
         show(){
             this.form.reset();
+            this.showModal = true;
+        },
+        edit(data){
+            this.editable = true;
+            this.form.id = data.id;
+            this.form.firstname = data.firstname;
+            this.form.middlename = data.middlename;
+            this.form.lastname = data.lastname;
+            this.form.email = data.email;
+            this.form.gender = data.gender;
+            this.form.civil_status = data.civil_status;
+            this.form.birth_place = data.birth_place;
+            this.form.birth_date = data.birth_date;
+            this.form.address = data.address;
+            this.form.occupation = data.occupation;
+            this.form.suffix = data.suffix;
+            this.form.contact_number = data.contact_number;
             this.showModal = true;
         },
         submit(){
