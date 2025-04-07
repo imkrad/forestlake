@@ -17,7 +17,8 @@ class Deceased extends Model
         'lot_id',
         'cause_of_death',
         'type_id',
-        'user_id'
+        'user_id',
+        'is_active'
     ];
 
     public function setNameAttribute($value)

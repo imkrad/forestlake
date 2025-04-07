@@ -53,9 +53,10 @@
                   <tr>
                     <th style="width: 5%;"></th>
                     <th>Name</th>
-                    <th style="width: 15%;" class="text-center">Birth Date</th>
-                    <th style="width: 15%;" class="text-center">Death Date</th>
-                    <th style="width: 15%;" class="text-center">Burial Date</th>
+                    <th style="width: 12%;" class="text-center">Birth Date</th>
+                    <th style="width: 12%;" class="text-center">Death Date</th>
+                    <th style="width: 12%;" class="text-center">Burial Date</th>
+                    <th style="width: 15%;" class="text-center">Type</th>
                     <th style="width: 7%;" ></th>
                   </tr>
                 </thead>
@@ -71,9 +72,15 @@
                         <td class="text-center fs-12">{{list.birth_date}}</td>
                         <td class="text-center fs-12">{{list.death_date}}</td>
                         <td class="text-center fs-12">{{list.burial_date}}</td>
+                        <td class="text-center fs-12">
+                          <span :class="'badge '+list.type.color">{{list.type.name}}</span>
+                        </td>
                         <td class="text-end">
-                            <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                          <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
+                            </b-button>
+                            <b-button @click="openUpdate(list)" variant="danger" class="me-1" v-b-tooltip.hover title="Update" size="sm">
+                                <i class="ri-skull-fill align-bottom"></i>
                             </b-button>
                             <b-button @click="openEdit(list,index)" variant="warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                 <i class="ri-pencil-fill align-bottom"></i>
@@ -103,19 +110,21 @@
     </BRow>
     <Create :sections="sections" @update="fetch()" ref="create"/>
     <Edit :types="types" ref="edit"/>
+    <Update @update="fetch()" :types="types" ref="update"/>
     <View ref="view"/>
 </template>
 <script>
 import _ from 'lodash';
 import View from './View.vue';
 import Edit from './Edit.vue';
+import Update from './Update.vue';
 import Create from './Create.vue';
 import simplebar from "simplebar-vue";
 import Multiselect from "@vueform/multiselect";
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Multiselect, simplebar, Create, Edit, View }, 
+    components: { Pagination, PageHeader, Multiselect, simplebar, Create, Edit, View, Update }, 
     props: ['sections','types'],
     data(){
         return {
@@ -173,6 +182,10 @@ export default {
         openView(data)
         {
           this.$refs.view.show(data);
+        },
+        openUpdate(data)
+        {
+          this.$refs.update.show(data);
         }
     }
 }

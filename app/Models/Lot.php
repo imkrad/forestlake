@@ -42,7 +42,7 @@ class Lot extends Model
 
     public function deceaseds()
     {
-        return $this->hasMany('App\Models\Deceased', 'lot_id');
+        return $this->hasMany('App\Models\Deceased', 'lot_id')->where('is_active',1);
     }
 
     public function setPriceAttribute($value)

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('death_date');
             $table->date('burial_date');
             $table->longText('cause_of_death'); 
+            $table->boolean('is_active')->default(1);
             $table->tinyInteger('type_id')->unsigned()->nullable();
             $table->foreign('type_id')->references('id')->on('list_dropdowns')->onDelete('cascade');
             $table->integer('lot_id')->unsigned()->index();

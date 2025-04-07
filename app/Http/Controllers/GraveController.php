@@ -47,6 +47,23 @@ class GraveController extends Controller
         return $data;
     }
 
+    public function changetype(Request $request){
+        $data = Deceased::where('id',$request->id)->first();
+        $data->type_id = $request->type_id;
+        $data->is_active = 0;
+        if($data->save()){
+            $lot_id = $data->lot_id;
+        }
+
+        return back()->with([
+            'data' => $data,
+            'message' => 'Deceased was updated!', 
+            'info' => "You've successfully updated deceased type.",
+            'status' => true
+        ]);
+
+    }
+
     public function store(GraveRequest $request){
         $data = new Deceased;
         $data->name = $request->name;
