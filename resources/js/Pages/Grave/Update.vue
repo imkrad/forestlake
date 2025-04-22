@@ -30,6 +30,14 @@
                     <BCol lg="12" class="mt-2">
                         <Multiselect v-model="form.type_id" placeholder="Select Type" :searchable="true" :close-on-select="true" label="name" :options="filteredTypes" />
                     </BCol>
+                    <BCol lg="12" v-if="form.type_id == 20">
+                        <InputLabel for="name" value="Date" :message="form.errors.deceased_at"/>
+                        <TextInput type="date" v-model="form.deceased_at" class="form-control" placeholder="Please enter date" @input="handleInput('deceased_at')" :light="true"/>
+                    </BCol>
+                    <BCol lg="12" v-if="form.type_id == 20" class="mt-0">
+                        <InputLabel for="name" value="Cementery" :message="form.errors.cementery"/>
+                        <TextInput type="text" v-model="form.cementery" class="form-control" placeholder="Please enter cementery" @input="handleInput('cementery')" :light="true"/>
+                    </BCol>
                 </BRow>
             </form>
         </template>
@@ -42,8 +50,10 @@
 <script>
 import { useForm } from '@inertiajs/vue3';
 import Multiselect from "@vueform/multiselect";
+import InputLabel from '@/Shared/Components/Forms/InputLabel.vue';
+import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 export default {
-    components: { Multiselect },
+    components: { Multiselect, InputLabel, TextInput },
     props: ['types'],
     data(){
         return {
@@ -52,6 +62,9 @@ export default {
             form: useForm({
                 id: null,
                 type_id: null,
+                deceased_at: null,
+                cementery: null,
+                information: null
             }),
             showModal: false,
         }

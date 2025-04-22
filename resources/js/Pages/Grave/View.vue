@@ -21,6 +21,9 @@
                     </div> -->
                 </div>
             </div>
+            <hr class="text-muted" v-if="selected.transfer"/>
+            <div class="text-muted" v-if="selected.transfer">Cementery : <span class="text-body fw-medium">{{selected.transfer.cementery}}</span></div>
+            <div class="text-muted" v-if="selected.transfer">Date Transfered : <span class="text-body fw-medium">{{selected.transfer.transfered_at}}</span></div>
             <hr class="text-muted"/>
             <Map @set="handleCoordinates" :coordinate="selected.lot.coordinate" ref="map" class="leaflet-map"/>
         </template>

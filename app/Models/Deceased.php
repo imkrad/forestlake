@@ -41,6 +41,11 @@ class Deceased extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
+    public function transfer()
+    {
+        return $this->hasOne('App\Models\DeceasedTransfer', 'deceased_id');
+    } 
+
     public function getBirthDateAttribute($value)
     {
         return date('F d, Y', strtotime($value));

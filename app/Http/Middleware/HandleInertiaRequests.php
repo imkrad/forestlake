@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
                     'others' => $item->others,
                 ];
             }),
-            'phases' => ListDropdown::where('classification','Phase')->get()->map(function ($item) {
+            'phases' => ListDropdown::where('classification','Phase')->where('is_active',1)->get()->map(function ($item) {
                 return [
                     'value' => $item->id,
                     'name' => $item->name
@@ -54,6 +54,7 @@ class HandleInertiaRequests extends Middleware
             'sections' => ListDropdown::where('classification','Section')->get()->map(function ($item) {
                 return [
                     'value' => $item->id,
+                    'limit' => $item->others,
                     'name' => 'Section '.$item->name
                 ];
             }),

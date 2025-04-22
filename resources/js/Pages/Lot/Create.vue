@@ -13,16 +13,16 @@
                 </BCol>
                 <BCol lg="4" class="mt-n1">
                     <InputLabel for="name" value="Section" :message="form.errors.section_id"/>
-                    <Multiselect v-model="form.section_id" placeholder="Select Area" :close-on-select="true" label="name" :options="sections" />
+                    <Multiselect v-model="form.section_id" placeholder="Select Area" :close-on-select="true" object label="name" :options="sections" />
                 </BCol>
                 <BCol lg="12">
                     <div class="table-responsive mt-n2 mb-2">
                         <table class="table table-nowrap align-middle mb-0">
                             <thead class="table-light">
                                 <tr class="fs-11">
-                                    <th class="fs-14 text-primary align-middle">LIST OF BLOCKS ({{ form.blocks.length }} blocks)</th>
+                                    <th class="fs-14 text-primary align-middle">LIST OF BLOCKS ({{ totalcount + form.blocks.length }} blocks are occupied out of {{ (form.section_id) ? form.section_id.limit : 0 }} blocks)</th>
                                     <th>
-                                        <b-button @click="addBlock" variant="primary" class=" float-end btn-sm">Add Block</b-button>
+                                        <b-button @click="addBlock" v-if="totalcount < form.section_id?.limit" variant="primary" class=" float-end btn-sm">Add Block</b-button>
                                     </th>
                                 </tr>
                             </thead>
@@ -30,10 +30,17 @@
                     </div>
                 </BCol>
             </BRow>
+            <p class="text-muted" v-if="totalcount == form.section_id?.limit">Full</p>
             <BRow class="g-3 mt-n1" v-for="(block, index) in form.blocks" :key="index">
                 <BCol lg="4" class="mt-1">
                     <InputLabel value="Block" :message="form.errors['blocks.'+index+'.block']"/>
-                    <TextInput v-model="block.block" type="text" class="form-control" placeholder="Please enter block" @input="handleInput('block')" :light="true" />
+                    <TextInput
+                    :value="block.block = Number(index + 1) + Number(totalcount)"
+                    type="text"
+                    class="form-control"
+                    readonly
+                    :light="true"
+                    />
                 </BCol>
                 <BCol lg="4" class="mt-1">
                     <InputLabel value="Size" :message="form.errors['blocks.'+index+'.size']"/>
@@ -68,16 +75,52 @@ export default {
                 section_id: null,
                 area_id: null,
                 phase_id: null,
-                blocks: [{ block: '', size: null, lots: null }],
+                blocks: [],
             }),
+            totalcount: 0,
             showModal: false,
             editable: false
+        }
+    },
+    watch: {
+        "form.section_id"(newVal){
+            if(newVal){
+                this.fetchCount();
+            }
+        },
+        "form.area_id"(newVal){
+            if(newVal){
+                this.fetchCount();
+            }
+        },
+        "form.phase_id"(newVal){
+            if(newVal){
+                this.fetchCount();
+            }
         }
     },
     methods: { 
         show(){
             this.form.reset();
             this.showModal = true;
+        },
+        fetchCount(){
+            if (this.form.phase_id && this.form.area_id && this.form.section_id) {
+                
+                axios.get('/blockcount',{
+                    params : {
+                        phase_id: this.form.phase_id,
+                        area_id: this.form.area_id,
+                        section_id: this.form.section_id
+                    }
+                })
+                .then(response => {
+                    if(response){
+                        this.totalcount = response.data;     
+                    }
+                })
+                .catch(err => console.log(err));
+            }
         },
         submit(){
             if(this.editable){
@@ -108,12 +151,13 @@ export default {
             this.showModal = false;
         },
         addBlock() {
-            this.form.blocks.push({ 
-                name: '', 
-                number: null, 
-                area: null, 
-                lots: null
-            });
+            if (this.form.section_id && this.form.blocks.length < this.form.section_id.limit) {
+                this.form.blocks.push({ 
+                    block: `${this.form.blocks.length + 1 + this.totalcount}`, 
+                    size: null, 
+                    lots: null 
+                });
+            }
         },
     }
 }

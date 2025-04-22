@@ -28,14 +28,18 @@
                 <BRow class="g-3 mt-2">
                     <BCol lg="12" class="mt-2">
                         <div class="d-flex">
-                            <div style="width: 100%;">
+                            <div class="flex-grow-1">
                                 <InputLabel value="Owner" :message="form.errors.owner"/>
-                                <Multiselect v-model="form.owner_id" @search-change="fetchOwner" placeholder="Select by Owner" object :searchable="true" :close-on-select="true" label="name" :options="owners" />
+                                <Multiselect v-model="form.owner_id" @search-change="fetchOwner" placeholder="Select by Owner" :searchable="true" :close-on-select="true" label="name" :options="owners" />
                             </div>
                             <div class="flex-shrink-0">
-                                <b-button @click="addOwner()" variant="light" class="waves-effect waves-light ms-1"><i class="ri-add-circle-fill"></i></b-button>
+                                <b-button @click="addOwner()" variant="light" class="waves-effect waves-light ms-1" style="margin-top: 20px;"><i class="ri-add-circle-fill"></i></b-button>
                             </div>
                         </div>
+                    </BCol>
+                    <BCol lg="12" class="mt-2">
+                        <InputLabel for="name" value="Date" :message="form.errors.email"/>
+                        <TextInput type="date" v-model="form.date" class="form-control" placeholder="Input enter date" @input="handleInput('date')" :light="true"/>
                     </BCol>
                 </BRow>
             </form>
@@ -51,14 +55,17 @@
 import Owner from '../Owner/Create.vue';
 import { useForm } from '@inertiajs/vue3';
 import Multiselect from "@vueform/multiselect";
+import InputLabel from '@/Shared/Components/Forms/InputLabel.vue';
+import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 export default {
-    components: { Multiselect, Owner },
+    components: { Multiselect, Owner, InputLabel, TextInput },
     data(){
         return {
             currentUrl: window.location.origin,
             selected: null,
             form: useForm({
                 lot_id: null,
+                date: new Date().toISOString().split('T')[0],
                 owner_id: null,
             }),
             id: null,

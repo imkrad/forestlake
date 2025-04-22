@@ -88,6 +88,7 @@ class OwnerController extends Controller
        
         $data = OwnerLot::where('lot_id',$lot_id)->first();
         $data->owner_id = $owner_id;
+        $data->sold_at = $request->date;
         $data->save();
         
     

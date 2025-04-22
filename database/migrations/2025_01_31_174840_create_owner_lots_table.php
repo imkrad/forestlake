@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('lot_id')->references('id')->on('lots')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('sold_at')->nullable();
             $table->timestamps();
         });
     }

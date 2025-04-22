@@ -79,7 +79,7 @@
                           <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
-                            <b-button @click="openUpdate(list)" variant="danger" class="me-1" v-b-tooltip.hover title="Update" size="sm">
+                            <b-button @click="openUpdate(list)" v-if="list.type.name != 'Bone Transfer'" variant="danger" class="me-1" v-b-tooltip.hover title="Update" size="sm">
                                 <i class="ri-skull-fill align-bottom"></i>
                             </b-button>
                             <b-button @click="openEdit(list,index)" variant="warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">

@@ -48,8 +48,18 @@ class LotController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'phase_id' => 'required',
+            'area_id' => 'required',
+            'section_id' => 'required',
+            'blocks' => ['required','array'],
+            'blocks.*.block' => 'required|integer',
+            'blocks.*.lots' => 'required|integer',
+            'blocks.*.size' => 'required|integer',
+        ]);
+
         $section = new Section;
-        $section->section_id = $request->section_id;
+        $section->section_id = $request->section_id['value'];
         $section->area_id = $request->area_id;
         $section->phase_id = $request->phase_id;
         $section->save();

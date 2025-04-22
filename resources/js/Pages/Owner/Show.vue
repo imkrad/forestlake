@@ -13,6 +13,8 @@
                         <div class="text-muted">Area : <span class="text-body fw-medium">{{selected.lot.area}}</span></div>
                         <div class="vr"></div>
                         <div class="text-muted">Phase : <span class="text-body fw-medium">{{selected.lot.phase}}</span></div>
+                        <div class="vr"></div>
+                        <div class="text-muted">Last sold date : <span class="text-body fw-medium">{{(date) ? date : '-'}}</span></div>
                     </div>
                 </div>
                 <div class="flex-shrink-0">
@@ -37,12 +39,14 @@ export default {
         return {
             currentUrl: window.location.origin,
             selected: null,
+            date: null,
             showModal: false,
         }
     },
     methods: { 
-        show(data){
+        show(data,date){
             this.selected = data;
+            this.date = date;
             this.showModal = true;
         },
         handleCoordinates(coords) {

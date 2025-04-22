@@ -39,7 +39,7 @@
                         <td class="text-center">{{ list.lot.phase }}</td>
                         <td class="text-center">{{list.lot.deceaseds.length}} / {{ list.lot.max_count }}</td>
                         <td class="text-end">
-                            <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                            <b-button @click="openView(list,list.sold_at)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
                             <b-button @click="openSell(list)" variant="danger" class="me-1" v-b-tooltip.hover title="Sell" size="sm">
@@ -74,8 +74,9 @@ export default {
             this.selected = data;
             this.showModal = true;
         },
-        openView(data){
-          this.$refs.view.show(data);
+        openView(data,date){
+            console.log(date);
+          this.$refs.view.show(data,date);
         },
         openSell(data){
           this.$refs.sell.show(data,this.selected.id);

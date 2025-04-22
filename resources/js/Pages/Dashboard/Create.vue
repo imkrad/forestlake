@@ -8,7 +8,7 @@
                 <BCol lg="12" class="mt-n1">
                     <div class="d-flex">
                         <div style="width: 100%;">
-                            <InputLabel value="Owner" :message="form.errors.owner"/>
+                            <InputLabel value="Lot Owner" :message="form.errors.owner"/>
                             <Multiselect v-model="form.owner" @search-change="fetchOwner" placeholder="Select by Owner" object :searchable="true" :close-on-select="true" label="name" :options="owners" />
                         </div>
                         <div class="flex-shrink-0">
@@ -34,7 +34,7 @@
                     <hr class="text-muted"/>
                 </BCol>
                 <BCol lg="12" class="mt-n1">
-                    <InputLabel for="name" value="Fullname" :message="form.errors.name"/>
+                    <InputLabel for="name" value="Deceased Fullname" :message="form.errors.name"/>
                     <TextInput type="text" v-model="form.name" class="form-control" placeholder="Please enter name" @input="handleInput('name')" :light="true"/>
                 </BCol>
                 <BCol lg="6" class="mt-0">
@@ -111,25 +111,42 @@ export default {
             this.showModal = true;
         },
         submit(){
-            if(this.editable){
-                this.form.put('/graves/update',{
-                    preserveScroll: true,
-                    onSuccess: (response) => {
-                        this.$emit('update',true);
-                        this.form.reset();
-                        this.hide();
-                    }
-                });
-            }else{
-                this.form.post('/graves',{
-                    preserveScroll: true,
-                    onSuccess: (response) => {
-                        this.$emit('update',true);
-                        this.hide();
-                    },
-                });
+    const birth = new Date(this.form.birth_date);
+    const death = new Date(this.form.death_date);
+    const burial = new Date(this.form.burial_date);
+
+    // Validate death date > birth date
+    if (this.form.birth_date && this.form.death_date && death <= birth) {
+        this.form.errors.death_date = "Death date must be later than birth date.";
+        return;
+    }
+
+    // Validate burial date >= death date
+    if (this.form.death_date && this.form.burial_date && burial < death) {
+        this.form.errors.burial_date = "Burial date must be the same or later than death date.";
+        return;
+    }
+
+    if(this.editable){
+        this.form.put('/graves/update',{
+            preserveScroll: true,
+            onSuccess: () => {
+                this.$emit('update', true);
+                this.form.reset();
+                this.hide();
             }
-        },
+        });
+    } else {
+        this.form.post('/graves',{
+            preserveScroll: true,
+            onSuccess: () => {
+                this.$emit('update', true);
+                this.hide();
+            },
+        });
+    }
+}
+,
         fetchOwner(code){
             axios.get('/search',{
                 params: {

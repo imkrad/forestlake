@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('information')->nullable();
             $table->integer('deceased_id')->unsigned()->index();
             $table->foreign('deceased_id')->references('id')->on('deceaseds')->onDelete('cascade');
+            $table->date('transfered_at');
             $table->timestamps();
         });
     }

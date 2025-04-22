@@ -56,7 +56,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'type' => 'n/a',
                 'color' => 'n/a',
                 'others' => 'n/a',
-                'is_active' => 1,
+                'is_active' => 0,
             ),
             4 => 
             array (
@@ -66,7 +66,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'type' => 'n/a',
                 'color' => 'n/a',
                 'others' => 'n/a',
-                'is_active' => 1,
+                'is_active' => 0,
             ),
             5 => 
             array (
@@ -76,7 +76,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'type' => 'n/a',
                 'color' => 'n/a',
                 'others' => 'n/a',
-                'is_active' => 1,
+                'is_active' => 0,
             ),
             6 => 
             array (
@@ -155,7 +155,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'classification' => 'Section',
                 'type' => 'n/a',
                 'color' => 'n/a',
-                'others' => 'n/a',
+                'others' => '5',
                 'is_active' => 1,
             ),
             14 => 
@@ -165,7 +165,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'classification' => 'Section',
                 'type' => 'n/a',
                 'color' => 'n/a',
-                'others' => 'n/a',
+                'others' => '87',
                 'is_active' => 1,
             ),
             15 => 
@@ -175,7 +175,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'classification' => 'Section',
                 'type' => 'n/a',
                 'color' => 'n/a',
-                'others' => 'n/a',
+                'others' => '65',
                 'is_active' => 1,
             ),
             16 => 
@@ -185,7 +185,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'classification' => 'Section',
                 'type' => 'n/a',
                 'color' => 'n/a',
-                'others' => 'n/a',
+                'others' => '108',
                 'is_active' => 1,
             ),
             17 => 
@@ -195,7 +195,7 @@ class ListDropdownsTableSeeder extends Seeder
                 'classification' => 'Section',
                 'type' => 'n/a',
                 'color' => 'n/a',
-                'others' => 'n/a',
+                'others' => '66',
                 'is_active' => 1,
             ),
             18 => 

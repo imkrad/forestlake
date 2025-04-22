@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lot;
 use App\Models\Block;
 use App\Models\Owner;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -36,21 +37,35 @@ class WelcomeController extends Controller
 
     private function owner($code,$id){
         $id = (int) $id;
-        $data = Owner::when($code, function ($query, $code,) {
-            $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$code}%")
-                    ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$code}%");
-        })
-        ->take(5)->get()
-        ->filter(function ($item) use ($id) {
-            return $item->id != $id;
-        })
-        ->map(function ($item) {
-            return [
-                'value' => $item->id,
-                'name' => $item->firstname.' '.$item->lastname
-            ];
-        });
+        if($code){
+            $data = Owner::when($code, function ($query, $code,) {
+                $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$code}%")
+                        ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$code}%");
+            })
+            ->take(5)->get()
+            ->filter(function ($item) use ($id) {
+                return $item->id != $id;
+            })
+            ->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'name' => $item->firstname.' '.$item->lastname
+                ];
+            });
+        }else{
+            $data = [];
+        }
         return $data;
+    }
+
+    public function blockcount(Request $request){
+        $id = Section::where('phase_id',$request->phase_id)->where('area_id',$request->area_id)->where('section_id',$request->section_id['value'])->value('id');
+        if($id){
+            $block = Block::where('section_id',$id)->count();
+        }else{
+            $block = 0;
+        }
+        return $block;
     }
 
     private function blocks($code){

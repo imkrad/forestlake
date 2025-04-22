@@ -18,6 +18,8 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::resource('/owners', App\Http\Controllers\OwnerController::class);
     Route::resource('/reports', App\Http\Controllers\ReportController::class);
 
+    Route::get('/blockcount', [App\Http\Controllers\WelcomeController::class, 'blockcount']);
+
     Route::post('/sell', [App\Http\Controllers\OwnerController::class, 'sell']);
     Route::post('/changetype', [App\Http\Controllers\GraveController::class, 'changetype']);
     

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Lot;
 use App\Models\Section;
 use App\Models\Deceased;
+use App\Models\DeceasedTransfer;
 use Illuminate\Http\Request;
 use App\Http\Requests\GraveRequest;
 use App\Http\Resources\DeceasedResource;
@@ -34,7 +35,7 @@ class GraveController extends Controller
         $data = DeceasedResource::collection(
             Deceased::query()
             ->with('lot.owner.owner','lot.block.section.section','lot.block.section.area','lot.block.section.phase','lot.coordinate','lot.status')
-            ->with('type')
+            ->with('type','transfer')
             ->when($request->keyword, function ($query, $keyword) {
                 $query->where('name', 'LIKE', "%{$keyword}%");
             })
@@ -53,6 +54,13 @@ class GraveController extends Controller
         $data->is_active = 0;
         if($data->save()){
             $lot_id = $data->lot_id;
+            if($request->type_id == 20){
+                $d = new DeceasedTransfer;
+                $d->cementery = $request->cementery;
+                $d->deceased_id = $request->id;
+                $d->deceased_at = $request->deceased_at;
+                $d->save();
+            }
         }
 
         return back()->with([

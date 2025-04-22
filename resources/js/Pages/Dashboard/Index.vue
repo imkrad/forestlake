@@ -78,17 +78,15 @@
                         <div class="card-body" style="height: calc(100vh - 450px); overflow: auto;">
                             <div class="table-responsive table-card">
                                 <table class="table table-hover table-nowrap align-middle mb-0">
-                                    <thead class="table-light">
-                                        <tr class="text-muted">
-                                            <th style="width: 3%;">#</th>
-                                            <th class="text-center" style="width: 20%;">Owner Name</th>
-                                            <th class="text-center" style="width: 20%;">Deceased Name</th>
-                                            <th class="text-center" style="width: 15%;">Lot</th>
-                                            <th class="text-center" style="width: 15%;">Death Date</th>
-                                            <th class="text-center" style="width: 15%;">Buried Date</th>
-                                            <th class="text-center" style="width: 10%;">
-
-                                            </th>
+                                    <thead class="table-light fs-11">
+                                        <tr>
+                                            <th style="width: 5%;"></th>
+                                            <th>Name</th>
+                                            <th style="width: 12%;" class="text-center">Birth Date</th>
+                                            <th style="width: 12%;" class="text-center">Death Date</th>
+                                            <th style="width: 12%;" class="text-center">Burial Date</th>
+                                            <th style="width: 15%;" class="text-center">Type</th>
+                                            <th style="width: 7%;" ></th>
                                         </tr>
                                     </thead>
 
@@ -97,20 +95,20 @@
                                             <td class="text-center"> 
                                                 {{ (meta.current_page - 1) * meta.per_page + index + 1 }}.
                                             </td>
-                                            <td class="text-center">
-                                                <h5 class="fs-13 mb-0 fw-semibold text-dark">{{list.lot.owner.owner.firstname}} {{list.lot.owner.owner.lastname}}</h5>
+                                            <td>
+                                                <h5 class="fs-13 mb-0 text-dark">{{list.name}}</h5>
+                                                <p class="fs-12 text-muted mb-0">Lot {{ list.lot.lot }} - Block {{ list.lot.block.block }} - Section {{ list.lot.block.section.section.name }} - Area {{list.lot.block.section.area.name }} - {{ list.lot.block.section.phase.name }}</p>
                                             </td>
-                                            <td class="text-center fw-semibold text-danger fs-12">{{list.name}}</td>
-                                            <td class="text-center fs-12">{{list.lot.number}}</td>
+                                            <td class="text-center fs-12">{{list.birth_date}}</td>
                                             <td class="text-center fs-12">{{list.death_date}}</td>
                                             <td class="text-center fs-12">{{list.burial_date}}</td>
+                                            <td class="text-center fs-12">
+                                            <span :class="'badge '+list.type.color">{{list.type.name}}</span>
+                                            </td>
                                             <td class="text-end">
-                                                <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                                            <b-button @click="openView(list)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                                     <i class="ri-eye-fill align-bottom"></i>
                                                 </b-button>
-                                                <!-- <b-button @click="openEdit(list,index)" variant="warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
-                                                    <i class="ri-pencil-fill align-bottom"></i>
-                                                </b-button> -->
                                             </td>
                                         </tr>
                                     </tbody>
