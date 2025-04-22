@@ -41,6 +41,7 @@ class LotController extends Controller
                 });
             })
             ->orderBy('block_id','ASC')
+            ->orderBy('lot','ASC')
             // ->orderBy('created_at','DESC')
             ->paginate($request->count);
 
