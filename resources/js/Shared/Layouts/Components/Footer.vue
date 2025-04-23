@@ -3,7 +3,7 @@
         <BContainer fluid>
             <BRow>
                 <BCol col sm="6">
-                    2023 © ADZU
+                    FORESTLAKE 2025
                 </BCol>
                 <BCol col sm="6">
                     <div class="text-sm-end d-none d-sm-block">

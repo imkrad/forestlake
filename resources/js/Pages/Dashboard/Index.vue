@@ -81,7 +81,8 @@
                                     <thead class="table-light fs-11">
                                         <tr>
                                             <th style="width: 5%;"></th>
-                                            <th>Name</th>
+                                            <th>Owner</th>
+                                            <th style="width: 20%;" class="text-center">Deceased</th>
                                             <th style="width: 12%;" class="text-center">Birth Date</th>
                                             <th style="width: 12%;" class="text-center">Death Date</th>
                                             <th style="width: 12%;" class="text-center">Burial Date</th>
@@ -96,9 +97,10 @@
                                                 {{ (meta.current_page - 1) * meta.per_page + index + 1 }}.
                                             </td>
                                             <td>
-                                                <h5 class="fs-13 mb-0 text-dark">{{list.name}}</h5>
-                                                <p class="fs-12 text-muted mb-0">Lot {{ list.lot.lot }} - Block {{ list.lot.block.block }} - Section {{ list.lot.block.section.section.name }} - Area {{list.lot.block.section.area.name }} - {{ list.lot.block.section.phase.name }}</p>
+                                                <h5 class="fs-13 mb-0 text-dark">{{list.lot.owner.owner.firstname}} {{list.lot.owner.owner.lastname}}</h5>
+                                                <!-- <p class="fs-12 text-muted mb-0">Lot {{ list.lot.lot }} - Block {{ list.lot.block.block }} - Section {{ list.lot.block.section.section.name }} - Area {{list.lot.block.section.area.name }} - {{ list.lot.block.section.phase.name }}</p> -->
                                             </td>
+                                            <td class="text-center fs-12">{{list.name}}</td>
                                             <td class="text-center fs-12">{{list.birth_date}}</td>
                                             <td class="text-center fs-12">{{list.death_date}}</td>
                                             <td class="text-center fs-12">{{list.burial_date}}</td>
