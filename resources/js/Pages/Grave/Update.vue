@@ -35,7 +35,7 @@
                         <TextInput type="date" v-model="form.deceased_at" class="form-control" placeholder="Please enter date" @input="handleInput('deceased_at')" :light="true"/>
                     </BCol>
                     <BCol lg="12" v-if="form.type_id == 20" class="mt-0">
-                        <InputLabel for="name" value="Cementery" :message="form.errors.cementery"/>
+                        <InputLabel for="name" value="Cemetery" :message="form.errors.cementery"/>
                         <TextInput type="text" v-model="form.cementery" class="form-control" placeholder="Please enter cementery" @input="handleInput('cementery')" :light="true"/>
                     </BCol>
                 </BRow>
