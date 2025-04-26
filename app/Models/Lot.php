@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Lot extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     protected $fillable = [
         'lot',
@@ -53,5 +55,14 @@ class Lot extends Model
     public function getPriceAttribute($value)
     {
         return '₱'.number_format($value,2,'.',',');
+    }
+
+    public function getActivitylogOptions(): LogOptions {
+        return LogOptions::defaults()
+        ->logOnly(['max_count','price','area','is_available','is_active','status_id','block_id'])
+        ->setDescriptionForEvent(fn(string $eventName) => "{$eventName} the lot information")
+        ->useLogName('Lot')
+        ->logOnlyDirty()
+        ->dontSubmitEmptyLogs();
     }
 }

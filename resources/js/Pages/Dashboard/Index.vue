@@ -1,6 +1,13 @@
 <template>
     <Head title="Dashboard" />
     <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                 <div class="card-body">
+                        <Map2 />
+                 </div>
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body" style="height: calc(100vh - 223px); overflow: auto;">
@@ -131,13 +138,14 @@
 </template>
 <script>
 import _ from 'lodash';
+import Map2 from './Map2.vue';
 import View from './View.vue';
 import Create from './Create.vue';
 import Buy from './Buy.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, PageHeader, Create, Buy, View }, 
+    components: { Pagination, PageHeader, Create, Buy, View, Map2 }, 
     props: ['counts','sections','lots','phases','areas','types'],
     data(){
         return {

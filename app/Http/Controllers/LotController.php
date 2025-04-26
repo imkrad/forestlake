@@ -132,4 +132,16 @@ class LotController extends Controller
             'status' => true
         ]);
     }
+
+    public function section(Request $request){
+        $id = $request->id;
+        $section = Section::with('section','phase','area')->where('section_id',$id)->where('area_id',$request->area)->first();
+        $ids = Section::with('section','phase','area')->where('section_id',$id)->where('area_id',$request->area)->pluck('id');
+        return [
+            'section' => $section,
+            'lots' => LotResource::collection(Lot::with('status','block')->whereHas('block', function ($query) use ($ids) {
+                $query->whereIn('section_id',$ids);
+            })->get())
+        ];
+    }
 }

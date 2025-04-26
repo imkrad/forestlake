@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Deceased extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     protected $fillable = [
         'name',
@@ -59,5 +61,14 @@ class Deceased extends Model
     public function getBurialDateAttribute($value)
     {
         return date('F d, Y', strtotime($value));
+    }
+
+    public function getActivitylogOptions(): LogOptions {
+        return LogOptions::defaults()
+        ->logOnly(['name','birth_date','death_date','burial_date','cause_of_death','lot_id','type_id'])
+        ->setDescriptionForEvent(fn(string $eventName) => "{$eventName} the deceased information")
+        ->useLogName('Decease')
+        ->logOnlyDirty()
+        ->dontSubmitEmptyLogs();
     }
 }

@@ -58,7 +58,7 @@ class GraveController extends Controller
                 $d = new DeceasedTransfer;
                 $d->cementery = $request->cementery;
                 $d->deceased_id = $request->id;
-                $d->deceased_at = $request->deceased_at;
+                $d->transfered_at = $request->deceased_at;
                 $d->save();
             }
         }

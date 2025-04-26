@@ -42,7 +42,7 @@
                             <b-button @click="openView(list,list.sold_at)" variant="info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
-                            <b-button @click="openSell(list)" variant="danger" class="me-1" v-b-tooltip.hover title="Sell" size="sm">
+                            <b-button v-if="list.lot.deceaseds.length == 0" @click="openSell(list)" variant="danger" class="me-1" v-b-tooltip.hover title="Sell" size="sm">
                                 <i class="ri-hand-coin-fill align-bottom"></i>
                             </b-button>
                         </td>

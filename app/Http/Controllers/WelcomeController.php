@@ -37,24 +37,22 @@ class WelcomeController extends Controller
 
     private function owner($code,$id){
         $id = (int) $id;
-        if($code){
-            $data = Owner::when($code, function ($query, $code,) {
-                $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$code}%")
-                        ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$code}%");
-            })
-            ->take(5)->get()
-            ->filter(function ($item) use ($id) {
-                return $item->id != $id;
-            })
-            ->map(function ($item) {
-                return [
-                    'value' => $item->id,
-                    'name' => $item->firstname.' '.$item->lastname
-                ];
-            });
-        }else{
-            $data = [];
-        }
+        
+        $data = Owner::when($code, function ($query, $code,) {
+            $query->where(\DB::raw('concat(firstname," ",lastname)'), 'LIKE', "%{$code}%")
+                    ->orWhere(\DB::raw('concat(lastname," ",firstname)'), 'LIKE', "%{$code}%");
+        })
+        ->take(5)->get()
+        ->filter(function ($item) use ($id) {
+            return $item->id != $id;
+        })
+        ->map(function ($item) {
+            return [
+                'value' => $item->id,
+                'name' => $item->firstname.' '.$item->lastname
+            ];
+        });
+       
         return $data;
     }
 

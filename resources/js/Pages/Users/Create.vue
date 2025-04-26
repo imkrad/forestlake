@@ -33,6 +33,14 @@
                         </div>
                     </div>
                 </BCol>
+                <BCol lg="12" class="mt-1">
+                    <InputLabel for="role" value="User Role" :message="form.errors.role"/>
+                    <select class="form-control" v-model="form.role" @change="handleInput('role')">
+                        <option disabled :value="null">Please select role</option>
+                        <option value="Park Assistant">Park Assistant</option>
+                        <option value="Staff">Staff</option>
+                    </select>
+                </BCol>
             </BRow>
         </form>
         <template v-slot:footer>
@@ -58,7 +66,7 @@ export default {
                 mobile: null,
                 email: null,
                 address: null,
-                role: 'Staff'
+                role: null
             }),
             showModal: false,
             editable: false

@@ -15,16 +15,6 @@ class DashboardController extends Controller
         }else{
             return inertia('Dashboard/Index',[
                 'counts' => $this->lists(),
-                // 'sections' => Section::where('is_active',1)
-                // ->select('section_id') // Select only distinct section IDs
-                // ->distinct()
-                // ->with('section')
-                // ->get()->map(function ($item) {
-                //     return [
-                //         'value' => $item->id,
-                //         'name' => $item->section->name
-                //     ];
-                // }),
                 'lots' => [
                     'available' => Lot::where('is_available',1)->count(),
                     'notavailable' => Lot::where('status_id',2)->count()
