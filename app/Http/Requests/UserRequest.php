@@ -21,6 +21,7 @@ class UserRequest extends FormRequest
             'gender' => 'sometimes|required|string|max:6',
             'mobile' => 'sometimes|required|numeric|digits:11|unique:user_profiles,mobile,'.$this->profile_id,
             'laboratory_id' => 'sometimes|required',
+            'role' => 'required',
             'password' => 'required|string|min:8|confirmed',
         ];
     }
