@@ -28,6 +28,14 @@
             <l-polygon :lat-lngs="blockA1" color="green" :fill-opacity="0.3" @click="openSection(14,7)">
                 <l-marker :lat-lng="['6.939654626083151','122.08062033030954']" :icon="getTextIcon('A')" @click="openSection(14,7)"></l-marker>
             </l-polygon>
+            <!-- <l-polygon
+    v-for="(box, index) in smallGraveBoxes"
+    :key="index"
+    :lat-lngs="box"
+    color="gray"
+    :weight="1"
+    :fill-opacity="0.6"
+  /> -->
             <l-polygon :lat-lngs="blockB1" color="green" :fill-opacity="0.3" @click="openSection(15,7)">
                 <l-marker :lat-lng="['6.939931532141487','122.08093139114197']" :icon="getTextIcon('B')" @click="openSection(14,7)"></l-marker>
             </l-polygon>
@@ -133,6 +141,21 @@ export default {
                 [6.939393695225278, 122.08069034666262],
                 [6.9397451530816845, 122.08083512367597]
             ],
+    //         smallGraveBoxes: [
+    //     [
+    //       [6.93969, 122.08051],
+    //       [6.93969, 122.08054],
+    //       [6.93967, 122.08054],
+    //       [6.93967, 122.08051],
+    //     ],
+    //     [
+    //       [6.93967, 122.08051],
+    //       [6.93967, 122.08054],
+    //       [6.93965, 122.08054],
+    //       [6.93965, 122.08051],
+    //     ],
+    //     // Add more boxes here...
+    //   ],
             blockB1: [
                 [6.939996498604283, 122.08064675331117],
                 [6.939746218170099, 122.08083987236024],

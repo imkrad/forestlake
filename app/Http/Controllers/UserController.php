@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request){
         $data = User::create(array_merge($request->all(),[
-            'password' => bcrypt('123456789'),
+            'password' => bcrypt($request->password),
             'is_active' => 1,
             'email_verified_at' => now()
         ]));

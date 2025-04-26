@@ -18,10 +18,11 @@ class DashboardController extends Controller
                 'lots' => [
                     'available' => Lot::where('is_available',1)->count(),
                     'notavailable' => Lot::where('status_id',2)->count()
-                ]
+                ],
             ]);
         }
     }
+
 
     public function lists(){
         return [

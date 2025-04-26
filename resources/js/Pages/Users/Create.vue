@@ -41,6 +41,14 @@
                         <option value="Staff">Staff</option>
                     </select>
                 </BCol>
+                <BCol lg="6" class="mt-2">
+                    <InputLabel for="password" value="Password" :message="form.errors.password"/>
+                    <TextInput type="password" v-model="form.password" class="form-control" placeholder="Enter password" @input="handleInput('password')" :light="true"/>
+                </BCol>
+                <BCol lg="6" class="mt-2">
+                    <InputLabel for="password_confirmation" value="Confirm Password" :message="form.errors.password_confirmation"/>
+                    <TextInput type="password" v-model="form.password_confirmation" class="form-control" placeholder="Confirm password" @input="handleInput('password_confirmation')" :light="true"/>
+                </BCol>
             </BRow>
         </form>
         <template v-slot:footer>
@@ -66,7 +74,9 @@ export default {
                 mobile: null,
                 email: null,
                 address: null,
-                role: null
+                role: null,
+                password: null,
+                password_confirmation: null
             }),
             showModal: false,
             editable: false

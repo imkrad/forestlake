@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body" style="height: calc(100vh - 223px); overflow: auto;">
                     <div class="d-grid gap-2" >
-                        <button @click="openBuy" class="btn btn-primary" type="button">BUY LOT</button>
+                        <button @click="openBuy" class="btn btn-primary" type="button">ADD LOT</button>
                     </div>
                     <hr class="text-muted">
                     <ul class="list-group list-group-flush border-dashed mb-0">
