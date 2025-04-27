@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-3">
             <div class="card">
-                <div class="card-body" style="height: calc(100vh - 223px); overflow: auto;">
+                <div class="card-body" style="height: calc(100vh - 373px); overflow: auto;">
                     <div class="d-grid gap-2" >
                         <button @click="openBuy" class="btn btn-primary" type="button">ADD LOT</button>
                     </div>
@@ -48,13 +48,29 @@
                                 </div>
                             </div>
                         </li>
+                        <li class="list-group-item px-0">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 avatar-xs">
+                                    <span class="avatar-title bg-light p-1 rounded-circle">
+                                        <i class="ri-close-circle-fill fs-16 text-warning"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                    <h6 class="mb-0 fs-12">Incomplete Lots Information</h6>
+                                    <p class="fs-11 mb-0 text-muted">Lot not updated</p>
+                                </div>
+                                <div class="flex-shrink-0 text-end">
+                                    <h6 class="mt-2">{{lots.incomplete}}</h6>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
             <div class="row g-3 h-100">
-                <div class="col-lg-3 col-md-8"  v-for="(list,index) in counts" v-bind:key="index">
+                <!-- <div class="col-lg-3 col-md-8"  v-for="(list,index) in counts" v-bind:key="index">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -67,14 +83,11 @@
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> {{list.name}}</p>
                                     <h4 class=" mb-0">{{list.count}}</h4>
                                 </div>
-                                <!-- <div class="flex-shrink-0 align-self-end">
-                                    <span class="badge bg-success-subtle text-success"><i class="ri-arrow-up-s-fill align-middle me-1"></i>6.24 %<span> </span></span>
-                                </div> -->
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-12 mt-n1">
+                </div> -->
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">List of Records</h4>
@@ -82,7 +95,7 @@
                                 <button @click="openCreate" type="button" class="btn btn-primary waves-effect waves-light">New Record</button>
                             </div>
                         </div>
-                        <div class="card-body" style="height: calc(100vh - 450px); overflow: auto;">
+                        <div class="card-body" style="height: calc(100vh - 500px); overflow: auto;">
                             <div class="table-responsive table-card">
                                 <table class="table table-hover table-nowrap align-middle mb-0">
                                     <thead class="table-light fs-11">
@@ -146,7 +159,7 @@ import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
     components: { Pagination, PageHeader, Create, Buy, View, Map2 }, 
-    props: ['counts','sections','lots','phases','areas','types'],
+    props: ['sections','lots','phases','areas','types'],
     data(){
         return {
             currentUrl: window.location.origin,

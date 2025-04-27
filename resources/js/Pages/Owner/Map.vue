@@ -16,6 +16,12 @@
             <l-marker v-if="userLocation" :lat-lng="userLocation" :icon="humanIcon">
                 <l-popup>You are here</l-popup>
             </l-marker>
+            <l-marker :lat-lng="fish" :icon="fishIcon"></l-marker>
+            <l-marker :lat-lng="olive" :icon="oliveIcon"></l-marker>
+            <l-marker :lat-lng="date" :icon="dateIcon"></l-marker>
+            <l-marker :lat-lng="anahaw" :icon="anahawIcon"></l-marker>
+            <l-marker :lat-lng="royal" :icon="royalIcon"></l-marker>
+            <l-marker :lat-lng="sugar" :icon="sugarIcon"></l-marker>
 
             <!-- Tile Layer -->
             <l-tile-layer :url="url" :attribution="attribution" />
@@ -42,6 +48,12 @@ export default {
             markerLatLng: null,
             userLocation: null, // Store user's location
             routingControl: null,
+            fish: latLng(6.93967,122.08069),
+            olive: latLng(6.939928,122.081741),
+            date: latLng(6.940354,122.082299),
+            anahaw: latLng(6.94069,122.08275),
+            royal: latLng(6.939971,122.082717),
+            sugar: latLng(6.940072,122.083426),
             humanIcon: icon({
                 iconUrl: "/images/icons/walking.png", // Human icon
                 iconSize: [40, 40], // Adjust size
@@ -59,7 +71,43 @@ export default {
                 iconSize: [40, 40], // Adjust size
                 iconAnchor: [20, 40], // Anchor point to align correctly
                 popupAnchor: [0, -40] // Adjust popup position
-            })
+            }),
+            fishIcon: icon({
+                iconUrl: "/images/icons/1.png", // Human icon
+                // iconSize: [120, 30], // Adjust size
+                iconAnchor: [20, 40], // Anchor point to align correctly
+                popupAnchor: [0, -40] // Adjust popup position
+            }),
+            oliveIcon: icon({
+                iconUrl: "/images/icons/2.png", // Human icon
+                // iconSize: [120, 30], // Adjust size
+                iconAnchor: [20, 40], // Anchor point to align correctly
+                popupAnchor: [0, -40] // Adjust popup position
+            }),
+            dateIcon: icon({
+                iconUrl: "/images/icons/3.png", // Human icon
+                // iconSize: [120, 30], // Adjust size
+                iconAnchor: [20, 40], // Anchor point to align correctly
+                popupAnchor: [0, -40] // Adjust popup position
+            }),
+            anahawIcon: icon({
+                iconUrl: "/images/icons/4.png", // Human icon
+                // iconSize: [120, 30], // Adjust size
+                iconAnchor: [20, 40], // Anchor point to align correctly
+                popupAnchor: [0, -40] // Adjust popup position
+            }),
+            royalIcon: icon({
+                iconUrl: "/images/icons/5.png", // Human icon
+                // iconSize: [120, 30], // Adjust size
+                iconAnchor: [20, 40], // Anchor point to align correctly
+                popupAnchor: [0, -40] // Adjust popup position
+            }),
+            sugarIcon: icon({
+                iconUrl: "/images/icons/6.png", // Human icon
+                // iconSize: [120, 30], // Adjust size
+                iconAnchor: [20, 40], // Anchor point to align correctly
+                popupAnchor: [0, -40] // Adjust popup position
+            }),
         };
     },
     watch: {
